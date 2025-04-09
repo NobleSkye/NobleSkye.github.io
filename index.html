@@ -1,122 +1,13 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <!-- Page setup -->
-    <meta charset="utf-8">
-    <title>NobleSkye.dev</title>
-    <meta name="description" content="NobleSkye.dev is a website that is for whatever I feel like adding">
-    <meta name="author" content="Skylar, :3">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel="icon" type="image/png" href="favicon.png">
-
-    <!-- Stylesheets -->
-    <!-- Reset default styles and add support for google fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap" rel="stylesheet" type="text/css" />
-
-    <!-- Custom styles -->
-    <link href="style.css" rel="stylesheet" type="text/css" />
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>    
-
-    <!-- Want to add Bootstrap? -->
-    <!-- Visit: https://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" type="text/css" />
-
-    <style>
-      body {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700; 
-      }
-    </style>
-    
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Dynamic Portfolio Website</title>
   </head>
-  
   <body>
-
-    <header id="header">
-      <img src="pfp.png" alt="Profile Picture">
-      <h1>Skylar</h1>
-      
-      <ul class="main-menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#skyenet">SkyeNetwork</a></li> 
-        <li><a href="#projects">Other Projects</a></li> 
-      </ul>                 
-    </header>
-
-    <div id="container">
-      <div class="inner">
-        <div id="content">
-          <div id="home" class="content-region hide">
-            <h2>Home</h2>
-            <p>This is my website, for some of my many projects that are polished! *enough to be showed off*</p>
-          </div>
-          
-          <div id="about" class="content-region hide">
-            <h2>About</h2>
-            <p>
-              Hello! I'm Skylar but you can call me Skye. I am a Junior in High School (2024-2025). This is my portfolio website where I will be putting some of my projects that I think show off my skills.
-              I am CompTIA ITF+ Certified! I got this from my high school. This year, I get the chance to do three certifications: ITF+, Security+, and Tech+. Since I already have my ITF+ this year, I only have Security+ and Tech+ to worry about!
-              <img src="https://private-user-images.githubusercontent.com/118846397/363532130-fb0d6421-f0fd-4e03-a6af-f9cf4979da77.png" alt="Certification Badge"/>
-            </p>
-          </div>
-          
-          <div id="contact" class="content-region hide">
-            <h2>Contact</h2>
-            <p>Welcome To My Website!</p>
-            <p>I'm Skylar, or you can call me Skye, I use She/Her Pronouns</p>
-            <p>Im a programmer, mainly in minecraft and websites but slowly have been expanding my horizons to many other langues and projects such as Go-Lang and rust</p>
-              
-            <ul>
-              <li>📧 Email:   <a href="mailto:Contact@nobleskye.dev">Contact@NobleSkye.dev </a> </li>
-              <li>💬 Discord: <a href="https://discordapp.com/users/1027043750721105971">@PrettySkye </a> </li>
-              <li>🐱 GitHub:  <a href="https://github.com/NobleSkye">NobleSkye </a> </li>
-              <li>🔗 GitLab: <a href="https://gitlab.com/NobleSkye">NobleSkye</a></li>
-              <li>🦋 BlueSky  <a href="https://bsky.app/profile/nobleskye.dev">@Nobleskye.dev </a> </li>
-              <li>⬜ SkyeNetwork:  <a href="https://uwu.skyenet.co.in">Website </a> </li>
-              
-            </ul>
-          </div>
-
-          <!-- New skyenet section -->
-          <div id="skyenet" class="content-region hide">
-            <h2>SkyeNetwork</h2>
-            <p>Welcome to SkyeNetwork, A Minecraft server network with many custom minigames and others with twists such as SkyeBlock, Datapacks SMP, Create: SkyeNet</p>
-            <ul>
-              <li>⛅ SkyeNet: <a href="https://uwu.skyenet.co.in">Website</a> </li> 
-              <li>💬 Discord: <a href="https://discord.gg/rhCkxTMXsF">Discord</a> </li>
-              <li>📧 Email:   <a href="mailto:support@skye.host">support@skye.host </a> </li>
-              <li>🦋 BlueSky: <a href="https://bsky.app/profile/skyenet.co.int">@SkyeNet.co.in </a> </li>
-              <li>💸 Store:   <a href="https://store.skyenet.co.in">Store.skyenet.co.in</a></li>
-            </ul>
-          </div>
-
-          <!-- New repos section -->
-          <div id="projects" class="content-region hide">
-            <h2>Repositories</h2>
-            <p>Here are some other projects that are (mostly) polished</p>
-            <ul>
-              <li>🦈 Blahaj.bio: <a href="https://blahaj.bio">Blahaj.bio</a></li>
-              <li>🐱 LegitimooseAPI: <a href="https://github.com/legitidevs/">Github</a></li>
-              <li>🌐 SkyeBrowser: <a href="https://github.com/nobleskye/go-browser">Skye Browser</a></li>
-              <li>🔍 SkyeSearch: <a href="https://skyesearch.cc">SkyeSearch</a></li>
-              </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <footer>  
-      NobleSkye 2024-2025©
-    </footer>
-    
-    <!-- Load additional JS scripts here -->
-    <script type="text/javascript" src="script.js"></script>
-    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
