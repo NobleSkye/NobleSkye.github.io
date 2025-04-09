@@ -16,11 +16,12 @@ export const siteConfig = {
   skills: [
     { name: 'MC Function', level: 90 },
     { name: 'Web Frontend', level: 80 },
-    { name: 'Web Backend', level: 67 },
     { name: 'Python', level: 75 },
-    { name: 'AWS', level: 70 },
+    { name: 'Linux', level: 70 },
+    { name: 'Web Backend', level: 65 }
+
   ],
-  githubUsername: 'nobleskye',
+  githubUsername: 'NobleSkye',
   featuredRepos: [
     'NobleSkye',
     'blahaj.bio',
@@ -31,6 +32,6 @@ export const siteConfig = {
   excludedRepos: ['private-repo'],
   github: {
     apiUrl: 'https://api.github.com',
-    reposPerPage: 12,
+    reposPerPage: 6,
   },
 };
