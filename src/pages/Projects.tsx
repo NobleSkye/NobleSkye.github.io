@@ -12,7 +12,7 @@ export default function Projects() {
     const fetchRepositories = async () => {
       try {
         const response = await fetch(
-          `${siteConfig.github.apiUrl}/users/${siteConfig.githubUsername}/repos?per_page=100&sort=updated`
+          `${siteConfig.github.apiUrl}/users/${siteConfig.githubUsername}/repos?per_page=100&sort=${siteConfig.repoSort}`,
         );
         
         if (!response.ok) {
