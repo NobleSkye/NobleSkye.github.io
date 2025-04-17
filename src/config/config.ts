@@ -24,7 +24,6 @@ export const siteConfig = {
     { name: 'Java', level: 50 },
     { name: 'Linux', level: 70 },
     { name: 'Remote Server Management', level: 60 },
-    { name: 'Ethical Hacking', level: 100 },
 
   ],
 
