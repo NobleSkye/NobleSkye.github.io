@@ -48,7 +48,9 @@ export default function Home() {
           
             </div>
           <p className="text-sm text-gray-500 mt-4 text-center">
-            Note: Percentages indicate confidence level in each skill
+            Note: Percentages indicate confidence level in each skill.
+            <br />
+            Certifications are not set to 100% when Cerifed
           </p>
         </div>
       </div>
