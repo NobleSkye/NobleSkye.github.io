@@ -3,6 +3,13 @@ export interface Skill {
   level: number;
 }
 
+export interface cert {
+    name: string;
+    provider: string;
+    expires: string;
+    acquired: string;
+  }
+
 export interface Repository {
   id: number;
   name: string;

@@ -13,6 +13,13 @@ export const siteConfig = {
     email: 'contact@nobleskye.dev',
     location: 'Somewhere, USA',
   },
+
+  certs: [
+    { name: 'Security Plus', provider: 'CompTIA', expires: '04/16/2028', acquired: '2025-Apr-16' },
+    { name: 'IT Fundamentals', provider: 'CompTIA', expires: 'Never', acquired: '2024-Aug-22' },
+  ], 
+  
+  
   skills: [
     { name: 'CompTIA Security+ Cert', level: 100 },
     { name: 'CompTIA IFT+ Cert', level: 100 },
@@ -25,7 +32,8 @@ export const siteConfig = {
     { name: 'Linux', level: 70 },
     { name: 'Remote Server Management', level: 60 },
 
-  ],
+],
+
 
 githubUsername: 'NobleSkye',
 featuredRepos: [
