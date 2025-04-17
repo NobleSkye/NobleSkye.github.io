@@ -3,7 +3,7 @@ export const siteConfig = {
   pronouns: 'she/her',
   role: 'Full Stack Developer',
   bio: 'Passionate software developer with expertise in React, Node.js, and cloud technologies. I love building scalable applications and contributing to open-source projects.',
-  photo: '',
+  photo: 'https://static.nobleskye.dev/pfp.png',
   social: {
     github: 'https://github.com/nobleskye',
     bsky: 'https://bsky.app/profile/nobleskye.dev',
