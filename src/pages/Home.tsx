@@ -1,6 +1,6 @@
 import { siteConfig } from '../config/config';
 import SkillBar from '../components/SkillBar';
-import { Github, Mail, MapPin } from 'lucide-react';
+import { Github, Mail, MapPin, Globe, Squarecode } from 'lucide-react';
 import CertList from '../components/CertList';
 
 export default function Home() {
@@ -29,15 +29,15 @@ export default function Home() {
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <square-dashed-bottom-code className="w-5 h-5 text-gray-400" />
-                <a href={`https://github.com/${siteConfig.social.github.name}`} className="text-gray-300 hover:text-blue-400">
-                  {siteConfig.contact.github}
+                <Globe className="w-5 h-5 text-gray-400" />
+                <a href={`https://${siteConfig.social.mas_instance}/${siteConfig.social.mastodon}`} className="text-gray-300 hover:text-blue-400">
+                  Mastodon
                 </a>
               </div>
               <div className="flex items-center gap-2">
-                <GithubIcon className="w-5 h-5 text-gray-400" />
-                <a href={`https://${siteConfig.social.instance}`} className="text-gray-300 hover:text-blue-400">
-                  {siteConfig.contact.mastodon}
+                <Github className="w-5 h-5 text-gray-400" />
+                <a href={`https://github.com/${siteConfig.contact.github}`} className="text-gray-300 hover:text-blue-400">
+                  {siteConfig.contact.github}
                 </a>
               </div>
               <div className="flex items-center gap-2">

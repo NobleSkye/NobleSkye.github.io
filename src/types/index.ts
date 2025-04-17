@@ -25,13 +25,14 @@ export interface Repository {
 export interface Social {
   github: string;
   bsky: string;
-  SkyeNetwork: string;
+  work: string;
+  mastodon: string;
+  mas_instance: string;
 }
 
 export interface Contact {
   email: string;
   discord: string;
   location: string;
-  mastodon: string;
-  mas_instance: string;
+  github: string;
 }

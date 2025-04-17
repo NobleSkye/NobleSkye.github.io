@@ -2,12 +2,14 @@ export const siteConfig = {
   name: 'Skylar Pearl',
   pronouns: 'She/Her',
   role: 'Full Stack Developer',
-  bio: 'Passionate software developer with expertise in React, Node.js, and cloud technologies. I love building scalable applications and contributing to open-source projects.',
+  bio: 'Passionate software developer with expertise in Minecraft, Linux, and Web design. I love building web applications and contributing to open-source projects.',
   photo: 'https://static.nobleskye.dev/pfp.png', //link to your pfp, or if you know the path from index
   social: {
     github: 'https://github.com/nobleskye',
     bsky: 'https://bsky.app/profile/nobleskye.dev',
-    SkyeNetwork: 'https://uwu.skyenet.co.in', //you arent apart of skyenet so you can remove this
+    work: 'https://uwu.skyenet.co.in', //you arent apart of skyenet so you can remove this
+    mastodon: 'NobleSkye', //username for mastodon // if not mastodon then just username // ie - @NobleSkye
+    mas_instance: 'skye.host', //the instance/server (domain) used // or if not mastdon this is url up until the @handle ie - youtube.com/@
   }, 
   //your contact info
   contact: {
@@ -15,8 +17,7 @@ export const siteConfig = {
     discord: 'PrettySkye',
     github: 'NobleSkye',
     location: 'Somewhere, USA',
-    mastodon: 'NobleSkye', //username for mastodon // if not mastodon then just username // ie - @NobleSkye
-    instance: 'skye.host', //the instance/server (domain) used // or if not mastdon this is url up until the @handle ie - youtube.com/@
+    
   },
 
 
