@@ -3,7 +3,7 @@ export const siteConfig = {
   pronouns: 'She/Her',
   role: 'Full Stack Developer',
   bio: 'Passionate software developer with expertise in React, Node.js, and cloud technologies. I love building scalable applications and contributing to open-source projects.',
-  photo: 'https://static.nobleskye.dev/pfp.png', //link to your pfp, or if you know the path from index.js
+  photo: 'https://static.nobleskye.dev/pfp.png', //link to your pfp, or if you know the path from index
   social: {
     github: 'https://github.com/nobleskye',
     bsky: 'https://bsky.app/profile/nobleskye.dev',
@@ -12,7 +12,11 @@ export const siteConfig = {
   //your contact info
   contact: {
     email: 'contact@nobleskye.dev',
+    discord: 'PrettySkye',
+    github: 'NobleSkye',
     location: 'Somewhere, USA',
+    mastodon: 'NobleSkye', //username for mastodon // if not mastodon then just username // ie - @NobleSkye
+    instance: 'skye.host', //the instance/server (domain) used // or if not mastdon this is url up until the @handle ie - youtube.com/@
   },
 
 
@@ -46,7 +50,8 @@ featuredRepos: [
   'blahaj.bio',
   'search.nobleskye.dev',
   'SkyePerms',
-  'CEM-S'
+  'CEM-S',
+  'Agents',
 ],
 
 //keep private repos so they stay private, or can add other repos that are public if you dont want to cluder the page
