@@ -42,7 +42,11 @@ export default function Home() {
             {siteConfig.skills.map((skill) => (
               <SkillBar key={skill.name} name={skill.name} level={skill.level} />
             ))}
-          </div>
+            {/* {siteConfig.certs.map((cert) => (
+              <CertBar key={cert.name} name={cert.name} state={cert.state} />
+            ))} */}
+          
+            </div>
           <p className="text-sm text-gray-500 mt-4 text-center">
             Note: Percentages indicate confidence level in each skill
           </p>

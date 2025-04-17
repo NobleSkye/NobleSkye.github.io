@@ -14,24 +14,40 @@ export const siteConfig = {
     location: 'Somewhere, USA',
   },
   skills: [
+    { name: 'CompTIA Security+ Cert', level: 100 },
+    { name: 'CompTIA IFT+ Cert', level: 100 },
     { name: 'MC Function', level: 90 },
+    { name: 'Cybersecurity', level: 70 },
     { name: 'Web Frontend', level: 80 },
+    { name: 'Web Backend', level: 67 },
     { name: 'Python', level: 75 },
+    { name: 'Java', level: 60 },
+    { name: 'HTML/CSS', level: 80 },
+    { name: 'Vite', level: 80 },
     { name: 'Linux', level: 70 },
-    { name: 'Web Backend', level: 65 }
+    { name: 'Docker', level: 60 },
+    { name: 'Git', level: 80 },
+    { name: 'Node.js', level: 70 },
+    { name: 'Remote', level: 60 },
+    { name: 'Ethical Hacking', level: 60 },
 
   ],
-  githubUsername: 'NobleSkye',
-  featuredRepos: [
-    'NobleSkye',
-    'blahaj.bio',
-    'search.nobleskye.dev',
-    'SkyePerms',
-    'CEM-S'
-  ],
-  excludedRepos: ['private-repo'],
-  github: {
-    apiUrl: 'https://api.github.com',
-    reposPerPage: 6,
-  },
+
+githubUsername: 'nobleskye',
+featuredRepos: [
+  'NobleSkye',
+  'blahaj.bio',
+  'search.nobleskye.dev',
+  'SkyePerms',
+  'CEM-S'
+],
+excludedRepos: ['private-repo'],
+github: {
+  apiUrl: 'https://api.github.com',
+  reposPerPage: 12,
+
+
+
+  repoSort: 'updates',
+},
 };
