@@ -40,11 +40,11 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-6">Skills & Expertise</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {siteConfig.skills.map((skill) => (
-              <SkillBar key={skill.name} name={skill.name} level={skill.level} />
+              <SkillBar key={skill.name} name={skill.name} level={skill.level}  />
             ))}
-            {/* {siteConfig.certs.map((cert) => (
-              <CertBar key={cert.name} name={cert.name} state={cert.state} />
-            ))} */}
+            {siteConfig.certs.map((cert) => (
+              <CertList key={cert.name} name={cert.name} />
+            ))}
           
             </div>
           <p className="text-sm text-gray-500 mt-4 text-center">

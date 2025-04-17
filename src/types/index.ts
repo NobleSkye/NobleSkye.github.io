@@ -2,6 +2,11 @@ export interface Skill {
   name: string;
   level: number;
 }
+export interface cert {
+  name: String;
+  certifed: boolean;
+  provider: String;
+}
 
 export interface Repository {
   id: number;

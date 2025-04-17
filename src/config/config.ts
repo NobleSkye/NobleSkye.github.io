@@ -14,7 +14,7 @@ export const siteConfig = {
     location: 'Somewhere, USA',
   },
   skills: [
-    { name: 'CompTIA Security+ Cert', level: 100 },
+    { name: 'CompTIA Security+ Cert', level: 100, cert: true },
     { name: 'CompTIA IFT+ Cert', level: 100 },
     { name: 'Hosting Minecraft Server Network', level: 100 },
     { name: 'MC Function', level: 90 },
@@ -25,6 +25,9 @@ export const siteConfig = {
     { name: 'Linux', level: 70 },
     { name: 'Remote Server Management', level: 60 },
 
+  ],
+  certs: [
+    {name: 'CompTIA Security+', provider: 'comptia', cerifed: true},
   ],
 
 githubUsername: 'NobleSkye',

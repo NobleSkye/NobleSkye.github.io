@@ -19,3 +19,4 @@ export default function SkillBar({ name, level }: SkillBarProps) {
     </div>
   );
 }
+
