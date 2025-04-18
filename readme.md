@@ -1,7 +1,6 @@
-
-# Welcome to My Personal Website!
-
-This is the repository for my personal website and portfolio, built to showcase my skills and projects. Below you'll find information on how to configure the site using `config.ts`.
+# forkable
+you can fork this and edit the config.ts and it should be all good and dandy
+`src/config/config.ts`
 
 ## `config.ts` Explained
 
