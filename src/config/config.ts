@@ -9,7 +9,7 @@ export const siteConfig = {
     bsky: 'https://bsky.app/profile/nobleskye.dev',
     work: 'https://uwu.skyenet.co.in', //you arent apart of skyenet so you can remove this
     mastodon: 'NobleSkye', //username for mastodon // if not mastodon then just username // ie - @NobleSkye
-    mas_instance: 'skye.host', //the instance/server (domain) used // or if not mastdon this is url up until the @handle ie - youtube.com/@
+    mas_instance: 'uwu.social', //the instance/server (domain) used // or if not mastdon this is url up until the @handle ie - youtube.com/@
   }, 
   //your contact info
   contact: {
