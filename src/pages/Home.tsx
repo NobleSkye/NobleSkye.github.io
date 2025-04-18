@@ -1,6 +1,7 @@
 import { siteConfig } from '../config/config';
 import SkillBar from '../components/SkillBar';
-import { Mail, MapPin } from 'lucide-react';
+import { Github, Mail, MapPin, Globe, Squarecode } from 'lucide-react';
+import CertList from '../components/CertList';
 
 export default function Home() {
   return (
@@ -28,6 +29,18 @@ export default function Home() {
                 </a>
               </div>
               <div className="flex items-center gap-2">
+                <Globe className="w-5 h-5 text-gray-400" />
+                <a href={`https://${siteConfig.social.mas_instance}/${siteConfig.social.mastodon}`} className="text-gray-300 hover:text-blue-400">
+                  Mastodon
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Github className="w-5 h-5 text-gray-400" />
+                <a href={`https://github.com/${siteConfig.contact.github}`} className="text-gray-300 hover:text-blue-400">
+                  Github
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-gray-400" />
                 <span className="text-gray-300">{siteConfig.contact.location}</span>
               </div>
@@ -37,20 +50,21 @@ export default function Home() {
 
         {/* Skills Section */}
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6">Skills & Expertise</h2>
+          <h2 className="text-2xl font-bold mb-6">Skills & Certifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {siteConfig.certs.map((cert) => (
+              <CertList key={cert.name} name={cert.name} provider={cert.provider} expires={cert.expires} acquired={cert.acquired} />
+            ))}
             {siteConfig.skills.map((skill) => (
               <SkillBar key={skill.name} name={skill.name} level={skill.level} />
             ))}
-            {/* {siteConfig.certs.map((cert) => (
-              <CertBar key={cert.name} name={cert.name} state={cert.state} />
-            ))} */}
+
+
           
             </div>
           <p className="text-sm text-gray-500 mt-4 text-center">
             Note: Percentages indicate confidence level in each skill.
             <br />
-            Certifications are not set to 100% when Cerifed
           </p>
         </div>
       </div>
