@@ -26,6 +26,7 @@ export const siteConfig = {
   certs: [
     // needs: name provider aquired  aquired  //order doesnt matter 
     { name: 'Security Plus', provider: 'CompTIA', acquired: '2025-Apr-16', expires: '2028-Apr-16',  },
+     { name: 'Tech Plus', provider: 'CompTIA', acquired: '2025-Apr-23', expires: 'Never',  },
     { name: 'IT Fundamentals', provider: 'CompTIA', acquired: '2024-Aug-22', expires: 'Never' },
   ], 
   
