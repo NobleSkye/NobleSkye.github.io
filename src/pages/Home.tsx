@@ -30,7 +30,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="w-5 h-5 text-gray-400" />
-                <a href={`https://${siteConfig.social.mas_instance}/${siteConfig.social.mastodon}`} className="text-gray-300 hover:text-blue-400">
+                <a href={`https://${siteConfig.social.mas_instance}/@${siteConfig.social.mastodon}`} className="text-gray-300 hover:text-blue-400">
                   Mastodon
                 </a>
               </div>
