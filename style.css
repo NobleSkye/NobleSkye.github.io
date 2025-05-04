@@ -1,6 +1,11 @@
 /**
  * Typography & Text styles
  */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://static.nobleskye/OpenDyslexic-Bold.otf') format('opentype');
+  font-weight: bold;
+}
 
 /* html is set to 62.5% so that all the REM measurements are based on 10px sizing. So basically 1.5rem = 15px */
 html {
@@ -10,7 +15,7 @@ body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
-  font-family: "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "OpenDyslexic", "Roboto", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #FFFFFF;
 }
 
