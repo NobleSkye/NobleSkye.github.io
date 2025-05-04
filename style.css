@@ -3,7 +3,7 @@
  */
 @font-face {
   font-family: 'OpenDyslexic';
-  src: url('https://static.nobleskye/OpenDyslexic-Bold.otf') format('opentype');
+  src: local('OpenDyslexic Bold'), url('opendyslexic-bold.otf') format('opentype');
   font-weight: bold;
 }
 
