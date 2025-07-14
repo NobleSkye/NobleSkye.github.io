@@ -9,6 +9,9 @@ import fs from "fs";
 import { config as loadEnvFile } from "dotenv";
 import { spawnSync } from "child_process";
 
+global.fetch = require('node-fetch');
+
+
 if (!fs.existsSync(".env.local")) {
   // Something is off, skip the script.
   process.exit(0);
