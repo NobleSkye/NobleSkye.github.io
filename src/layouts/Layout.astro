@@ -1,0 +1,310 @@
+---
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const here = path.dirname(fileURLToPath(import.meta.url));
+const fontDir = path.resolve(here, '../../public/fonts');
+
+const sgaCandidates = [
+  { file: 'SGA-Regular.woff2', format: 'woff2' },
+  { file: 'SGA-Regular.woff', format: 'woff' },
+  { file: 'SGA-Regular.ttf', format: 'truetype' },
+];
+
+const sgaSources = sgaCandidates
+  .filter(({ file }) => fs.existsSync(path.join(fontDir, file)))
+  .map(({ file, format }) => `url('/fonts/${file}') format('${format}')`);
+
+const sgaFontFaceCss = sgaSources.length
+  ? `
+  @font-face {
+    font-family: 'Sga Regular';
+    src:
+      ${sgaSources.join(',\n      ')};
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+`
+  : '';
+
+const globalCss = `${sgaFontFaceCss}
+
+html {
+  font-family: Inter, system-ui, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body.sga-boot {
+  font-family: 'Sga Regular', Inter, system-ui, sans-serif;
+}
+
+#starfield {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Skylar Steuber - Developer Portfolio" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-dark text-primary overflow-x-hidden sga-boot">
+    <canvas id="starfield" aria-hidden="true"></canvas>
+    <div class="relative z-10">
+      <slot />
+    </div>
+
+    <script>
+      // @ts-nocheck
+      const canvas = /** @type {HTMLCanvasElement | null} */ (document.getElementById('starfield'));
+      const ctx = canvas?.getContext('2d');
+
+      if (canvas && ctx) {
+        const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ?????????';
+        let fontSize = 18;
+        let columns = 0;
+        let rows = 0;
+        const tailLength = 10;
+        const stepMs = 50;
+
+        /** @type {{ y: number; glyphs: string[] }[]} */
+        let streams = [];
+
+        function resize() {
+          canvas.width = Math.floor(window.innerWidth * DPR);
+          canvas.height = Math.floor(window.innerHeight * DPR);
+          canvas.style.width = '100vw';
+          canvas.style.height = '100vh';
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+          // Keep the effect readable across screen sizes.
+          fontSize = Math.max(14, Math.min(22, Math.floor(window.innerWidth / 70)));
+          columns = Math.max(1, Math.floor(window.innerWidth / fontSize));
+          rows = Math.max(1, Math.floor(window.innerHeight / fontSize));
+
+          streams = Array.from({ length: columns }, () => {
+            const y = Math.floor(Math.random() * rows);
+            const glyphs = Array.from({ length: tailLength }, () => chars[Math.floor(Math.random() * chars.length)]);
+            return { y, glyphs };
+          });
+        }
+
+        resize();
+        window.addEventListener('resize', resize);
+
+        function randChar() {
+          return chars[Math.floor(Math.random() * chars.length)];
+        }
+
+        function tickStreams() {
+          for (const s of streams) {
+            s.y = (s.y + 1) % rows;
+            s.glyphs.pop();
+            s.glyphs.unshift(randChar());
+          }
+        }
+
+        function render() {
+          // Hard clear (no blur/trails)
+          ctx.fillStyle = 'rgb(0,0,0)';
+          ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+          ctx.font = `${fontSize}px 'Sga Regular', monospace`;
+          ctx.textBaseline = 'top';
+
+          for (let i = 0; i < streams.length; i++) {
+            const s = streams[i];
+            const x = i * fontSize;
+
+            // Bright head
+            const headY = s.y * fontSize;
+            ctx.fillStyle = 'rgba(0,255,0,0.95)';
+            ctx.fillText(s.glyphs[0], x, headY);
+
+            // Crisp tail (no blur, just lower alpha)
+            for (let t = 1; t < s.glyphs.length; t++) {
+              const yIndex = (s.y - t + rows) % rows;
+              const y = yIndex * fontSize;
+              const a = Math.max(0.05, 0.6 - t * 0.06);
+              ctx.fillStyle = `rgba(0,255,0,${a})`;
+              ctx.fillText(s.glyphs[t], x, y);
+            }
+          }
+        }
+
+        let last = performance.now();
+        let acc = 0;
+        function frame(now) {
+          const dt = Math.min(80, now - last);
+          last = now;
+          acc += dt;
+
+          while (acc >= stepMs) {
+            acc -= stepMs;
+            tickStreams();
+          }
+
+          render();
+          requestAnimationFrame(frame);
+        }
+
+        // Wait for SGA to be available before drawing.
+        const start = () => requestAnimationFrame(frame);
+        if (document.fonts && document.fonts.load) {
+          document.fonts.load(`16px 'Sga Regular'`).then(start).catch(start);
+        } else {
+          start();
+        }
+      }
+    </script>
+
+    <script>
+      // @ts-nocheck
+      (function () {
+        if (window.__sgaFontSwapInit) return;
+        window.__sgaFontSwapInit = true;
+
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) {
+          document.body.classList.remove('sga-boot');
+          return;
+        }
+
+        const DURATION = 500;
+        window.setTimeout(() => {
+          document.body.classList.remove('sga-boot');
+        }, DURATION);
+      })();
+    </script>
+
+    <script>
+      // @ts-nocheck
+      (function () {
+        if (window.__sgaScrambleWaveInit) return;
+        window.__sgaScrambleWaveInit = true;
+
+        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;
+
+        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+        const duration = 400;
+        const minFrameMs = 100; // slow down how often characters change (higher = slower)
+        const groups = [
+          { selector: '[data-scramble="profile"]', delay: 0 },
+          { selector: '[data-scramble="resume"]', delay: duration + 150 },
+          { selector: '[data-scramble="design"]', delay: duration * 2 + 200 },
+          { selector: '[data-scramble="coding"]', delay: duration * 2 + 200 },
+        ];
+
+        function easeOutCubic(x) {
+          return 1 - Math.pow(1 - x, 3);
+        }
+
+        function scrambleText(original, strength) {
+          let out = '';
+          for (let i = 0; i < original.length; i++) {
+            const ch = original[i];
+            if (/\s/.test(ch)) {
+              out += ch;
+              continue;
+            }
+            if (!/[A-Za-z]/.test(ch)) {
+              out += ch;
+              continue;
+            }
+            const useScramble = Math.random() < strength;
+            out += useScramble ? charset[Math.floor(Math.random() * charset.length)] : ch;
+          }
+          return out;
+        }
+
+        function collectTextNodes(el, acc = []) {
+          if (!el) return acc;
+          for (const child of el.childNodes) {
+            if (child.nodeType === Node.TEXT_NODE) {
+              if ((child.textContent || '').trim()) acc.push(child);
+            } else {
+              collectTextNodes(child, acc);
+            }
+          }
+          return acc;
+        }
+
+        function animateNode(node, delay) {
+          const original = node.textContent || '';
+          let start;
+          let lastUpdate = 0;
+
+          function step(ts) {
+            if (start === undefined) {
+              start = ts + delay;
+            }
+            if (ts < start) {
+              requestAnimationFrame(step);
+              return;
+            }
+
+            const t = Math.min(1, (ts - start) / duration);
+            const eased = easeOutCubic(t);
+            const strength = 1 - eased;
+
+            if (ts - lastUpdate >= minFrameMs || lastUpdate === 0) {
+              node.textContent = scrambleText(original, strength);
+              lastUpdate = ts;
+            }
+
+            if (t < 1) {
+              requestAnimationFrame(step);
+            } else {
+              node.textContent = original;
+            }
+          }
+
+          requestAnimationFrame(step);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+          for (const group of groups) {
+            const el = document.querySelector(group.selector);
+            if (!el) continue;
+            const nodes = collectTextNodes(el);
+            nodes.forEach((node) => animateNode(node, group.delay));
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global set:html={globalCss} />
