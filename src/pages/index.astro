@@ -55,25 +55,25 @@ const codingSkills = [
           </div>
 
           <!-- Main Content -->
-          <div id="resume" class="lg:col-span-2 bg-dark rounded-3xl p-8" data-scramble="resume">
+          <div id="resume" class="lg:col-span-2 bg-dark rounded-3xl p-8 text-gray-300" data-scramble="resume">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
               <!-- Left Column -->
               <div>
                 <!-- Resume Header -->
                 <div class="mb-8">
-                  <h1 class="text-white text-3xl font-bold mb-2">
+                  <h1 class="text-gray-200 text-3xl font-bold mb-2">
                     Resume<span class="text-primary">.</span>
                   </h1>
                 </div>
 
                 <!-- Education -->
                 <div id="education">
-                  <Section title="Education" items={educationData} />
+                  <Section title="Education" items={educationData} icon="education" />
                 </div>
 
                 <!-- Experience -->
-                <Section title="Experience" items={experienceData} />
+                <Section title="Experience" items={experienceData} icon="experience" />
               </div>
 
               <!-- Right Column -->
