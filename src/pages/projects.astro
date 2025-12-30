@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projectData = [
+  {
+    title: "SkyeNet Infrastructure",
+    status: "Live",
+    description: "Custom Minecraft network with bespoke mini-games, cross-server chat, and hardened networking.",
+    stack: "Java · Velocity · Paper · Docker · Proxmox · WireGuard/Tailscale · Linux",
+    link: "https://github.com/skyenetmc/infra"
+  },
+  {
+    title: "Blahaj.bio",
+    status: "Live",
+    description: "A simple, minimalist personal profile site generator focused on privacy & simplicity.",
+    stack: "Astro · Tailwind · TypeScript",
+    link: "https://github.com/NobleSkye/blahaj.bio"
+  },
+  {
+    title: "Pyrodactyl Panel",
+    status: "Open Source",
+    description: "Pterodactyl panel fork with additional features and customizations with better support & security.",
+    stack: "PHP · TypeScript · JS · CSS",
+    link: "https://github.com/pyrodactyl-oss/pyrodactyl"
+  }
+];
+---
+
+<Layout title="Projects - Skylar Steuber">
+  <main id="top" class="min-h-screen relative">
+    <div class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-20 flex-col gap-3" role="navigation" aria-label="Page tabs">
+      <a
+        href="/"
+        class="px-4 py-2 text-sm font-semibold rounded-full border bg-dark-lighter text-gray-300 border-gray-800 hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+      >
+        About
+      </a>
+      <a
+        href="#top"
+        class="px-4 py-2 text-sm font-semibold rounded-full border bg-primary text-dark border-primary shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+        aria-current="page"
+      >
+        Projects
+      </a>
+    </div>
+
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
+      <div class="w-full max-w-6xl mx-auto">
+        <div class="bg-dark rounded-3xl p-8 text-gray-200">
+          <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
+            <div>
+              <p class="text-sm text-gray-400 uppercase tracking-wide">Work</p>
+              <h1 class="text-3xl font-bold text-gray-100">Projects<span class="text-primary">.</span></h1>
+            </div>
+            <a
+              href="/"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-700 text-gray-200 bg-dark-lighter hover:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+            >
+              ← Back to About
+            </a>
+          </div>
+
+          <div class="space-y-5">
+            {projectData.map((project) => (
+              <div class="bg-dark-lighter/70 border border-gray-800 rounded-2xl p-5 shadow-inner">
+                <div class="flex items-center justify-between gap-3">
+                  <div>
+                    <h2 class="text-xl font-semibold text-gray-100">{project.title}</h2>
+                    <p class="text-gray-400 text-sm">{project.stack}</p>
+                  </div>
+                  <span class="text-xs uppercase tracking-wide text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/30">
+                    {project.status}
+                  </span>
+                </div>
+                <div class="mt-2 text-sm text-gray-300">
+                  link: <a href={project.link} class="text-primary hover:underline" target="_blank" rel="noreferrer">GitHub ↗</a>
+                </div>
+                <p class="text-gray-300 text-sm mt-3 leading-relaxed">{project.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

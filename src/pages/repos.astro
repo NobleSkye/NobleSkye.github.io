@@ -1,0 +1,225 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Put the repos you want to force to the top here (any owner works).
+const priorityRepos = [
+    { owner: 'NobleSkye', repo: 'NobleSkye.github.io' },
+    { owner: 'NobleSkye', repo: 'SkyeNetwork' },
+    { owner: 'NobleSkye', repo: 'pronouns.site' },
+    { owner: 'NobleSkye', repo: 'blahaj.bio' },
+    { owner: 'skyenetmc', repo: 'infra' },
+    { owner: 'skyenetmc', repo: 'skyeblock' },
+    { owner: 'skyenetmc', repo: 'skyenetv' }, 
+    { owner: 'skyenetmc', repo: 'skyenetp' },
+    { owner: 'skyenetmc', repo: 'skyenetc' },
+];
+
+// Owners to pull pinned + recent repos from. Add more handles as needed.
+const owners = ['NobleSkye', 'skyenetmc'];
+
+const headers = { 'User-Agent': 'astro-repo-list' };
+const clean = (s) => (typeof s === 'string' ? s.trim() : s ?? '');
+
+/**
+ * @typedef {{
+ *  id: string;
+ *  name: string;
+ *  owner: string;
+ *  description: string;
+ *  language: string;
+ *  stars: number;
+ *  updatedAt: string;
+ *  url: string;
+ *  source: 'priority' | 'pinned' | 'recent';
+ * }} Repo
+ */
+
+async function fetchJSON(url) {
+  const res = await fetch(url, { headers });
+  if (!res.ok) {
+    const err = new Error(`Failed ${url}: ${res.status}`);
+    // Attach status so callers can gracefully handle 404s.
+    // @ts-ignore
+    err.status = res.status;
+    throw err;
+  }
+  return res.json();
+}
+
+function normalizeGithubRepo(data, source) {
+  const owner = clean(data.owner?.login || data.owner || 'unknown');
+  const name = clean(data.name);
+  return {
+    id: `${owner}/${name}`,
+    name,
+    owner,
+    description: clean(data.description) || 'No description provided.',
+    language: clean(data.language) || 'Other',
+    stars: data.stargazers_count ?? 0,
+    updatedAt: data.pushed_at || data.updated_at || '',
+    url: data.html_url,
+    source,
+  };
+}
+
+async function fetchRepoDetails(owner, repo) {
+  try {
+    const data = await fetchJSON(`https://api.github.com/repos/${owner}/${repo}`);
+    return normalizeGithubRepo(data, 'priority');
+  } catch (err) {
+    // Ignore missing repos quietly; surface other errors for visibility.
+    // @ts-ignore
+    if (err?.status !== 404) console.error(err);
+    return null;
+  }
+}
+
+async function fetchPinned(owner) {
+  try {
+    const list = await fetchJSON(`https://gh-pinned-repos.egoist.dev/?username=${owner}`);
+    if (!Array.isArray(list)) return [];
+    return list.map((item) => ({
+      id: `${clean(owner)}/${clean(item.repo)}`,
+      name: clean(item.repo),
+      owner: clean(owner),
+      description: clean(item.description) || 'Pinned project',
+      language: clean(item.language) || 'Other',
+      stars: item.stars ?? 0,
+      updatedAt: item.pushed || item.updated_at || '',
+      url: item.link || `https://github.com/${clean(owner)}/${clean(item.repo)}`,
+      source: 'pinned',
+    }));
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
+async function fetchRecent(owner) {
+  try {
+    const repos = await fetchJSON(`https://api.github.com/users/${owner}/repos?per_page=100&sort=updated`);
+    if (!Array.isArray(repos)) return [];
+    return repos.map((r) => normalizeGithubRepo(r, 'recent'));
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
+const priorityDetails = (await Promise.all(priorityRepos.map((r) => fetchRepoDetails(r.owner, r.repo)))).filter(Boolean);
+const pinnedLists = (await Promise.all(owners.map((o) => fetchPinned(o)))).flat();
+const recentLists = (await Promise.all(owners.map((o) => fetchRecent(o)))).flat();
+const recentSorted = [...recentLists].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+
+const ordered = [];
+const seen = new Set();
+const MAX_TOTAL = 20;
+const maxAuto = Math.max(0, MAX_TOTAL - priorityDetails.length);
+let autoAdded = 0;
+
+for (const repo of priorityDetails) {
+  if (seen.has(repo.id)) continue;
+  seen.add(repo.id);
+  ordered.push(repo);
+}
+for (const repo of pinnedLists) {
+  if (autoAdded >= maxAuto) break;
+  if (seen.has(repo.id)) continue;
+  seen.add(repo.id);
+  ordered.push(repo);
+  autoAdded++;
+}
+for (const repo of recentSorted) {
+  if (autoAdded >= maxAuto) break;
+  if (seen.has(repo.id)) continue;
+  seen.add(repo.id);
+  ordered.push(repo);
+  autoAdded++;
+}
+---
+
+<Layout title="Repos - Skylar Steuber">
+  <main id="top" class="min-h-screen relative">
+    <div class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-20 flex-col gap-3" role="navigation" aria-label="Page tabs">
+      <a
+        href="/"
+        class="px-4 py-2 text-sm font-semibold rounded-full border bg-dark-lighter text-gray-300 border-gray-800 hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+      >
+        About
+      </a>
+      <a
+        href="/projects"
+        class="px-4 py-2 text-sm font-semibold rounded-full border bg-dark-lighter text-gray-300 border-gray-800 hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+      >
+        Projects
+      </a>
+      <a
+        href="#top"
+        class="px-4 py-2 text-sm font-semibold rounded-full border bg-primary text-dark border-primary shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+        aria-current="page"
+      >
+        Repos
+      </a>
+    </div>
+
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
+      <div class="w-full max-w-6xl mx-auto">
+        <div class="bg-dark rounded-3xl p-8 text-gray-200">
+          <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
+            <div>
+              <p class="text-sm text-gray-400 uppercase tracking-wide">Code</p>
+              <h1 class="text-3xl font-bold text-gray-100">Repos<span class="text-primary">.</span></h1>
+              <p class="text-sm text-gray-400 mt-1">Priority list → pinned → most recently active.</p>
+            </div>
+            <a
+              href="https://github.com/NobleSkye"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-700 text-gray-200 bg-dark-lighter hover:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View GitHub ↗
+            </a>
+          </div>
+
+          {ordered.length === 0 ? (
+            <div class="bg-dark-lighter/70 border border-gray-800 rounded-2xl p-5 text-sm text-gray-300">
+              No repositories could be loaded. You might be offline or rate-limited; refresh and try again.
+            </div>
+          ) : (
+            <div class="space-y-5">
+              {ordered.map((repo) => (
+                <div class="bg-dark-lighter/70 border border-gray-800 rounded-2xl p-5 shadow-inner">
+                  <div class="flex items-center justify-between gap-3 flex-wrap">
+                    <div>
+                      <p class="text-xs uppercase tracking-wide text-gray-400">{repo.owner}</p>
+                      <h2 class="text-xl font-semibold text-gray-100">{repo.name}</h2>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs">
+                      <span class="px-3 py-1 rounded-full border border-gray-700 text-gray-300 bg-gray-900/60">{repo.source}</span>
+                      <span class="px-3 py-1 rounded-full border border-gray-700 text-gray-300 bg-gray-900/60">{repo.language}</span>
+                      <span class="px-3 py-1 rounded-full border border-gray-700 text-gray-300 bg-gray-900/60">★ {repo.stars}</span>
+                    </div>
+                  </div>
+                  <p class="text-gray-300 text-sm mt-3 leading-relaxed">{repo.description}</p>
+                  <div class="flex items-center justify-between flex-wrap gap-3 mt-4 text-sm text-gray-400">
+                    <span>Updated {repo.updatedAt ? new Date(repo.updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : 'recently'}</span>
+                    <div class="flex items-center gap-2">
+                      <a
+                        href={repo.url}
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-700 text-gray-200 bg-dark hover:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        GitHub ↗
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

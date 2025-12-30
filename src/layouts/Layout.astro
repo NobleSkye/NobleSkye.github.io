@@ -79,6 +79,14 @@ body.sga-boot {
   </head>
   <body class="bg-dark text-primary overflow-x-hidden sga-boot">
     <canvas id="starfield" aria-hidden="true"></canvas>
+    <button
+      id="bg-toggle"
+      type="button"
+      class="fixed bottom-4 right-4 z-20 px-3 py-2 text-xs font-semibold rounded-full border border-gray-700 bg-dark-lighter text-gray-200 hover:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+      aria-pressed="false"
+    >
+      Pause background
+    </button>
     <div class="relative z-10">
       <slot />
     </div>
@@ -163,19 +171,47 @@ body.sga-boot {
           }
         }
 
+        const PAUSE_KEY = 'starfield-paused';
         let last = performance.now();
         let acc = 0;
+        let paused = false;
+
+        const readSavedPause = () => {
+          try {
+            return localStorage.getItem(PAUSE_KEY) === '1';
+          } catch (_) {
+            return false;
+          }
+        };
+
+        function setPaused(next) {
+          paused = next;
+          const btn = document.getElementById('bg-toggle');
+          if (btn) {
+            btn.textContent = paused ? 'Resume background' : 'Pause background';
+            btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+          }
+          try {
+            localStorage.setItem(PAUSE_KEY, paused ? '1' : '0');
+          } catch (_) {
+            /* ignore */
+          }
+        }
+
         function frame(now) {
           const dt = Math.min(80, now - last);
           last = now;
           acc += dt;
 
-          while (acc >= stepMs) {
-            acc -= stepMs;
-            tickStreams();
+          if (!paused) {
+            while (acc >= stepMs) {
+              acc -= stepMs;
+              tickStreams();
+            }
+
+            render();
           }
 
-          render();
           requestAnimationFrame(frame);
         }
 
@@ -185,6 +221,12 @@ body.sga-boot {
           document.fonts.load(`16px 'Sga Regular'`).then(start).catch(start);
         } else {
           start();
+        }
+
+        const btn = document.getElementById('bg-toggle');
+        setPaused(readSavedPause());
+        if (btn) {
+          btn.addEventListener('click', () => setPaused(!paused));
         }
       }
     </script>
@@ -205,103 +247,6 @@ body.sga-boot {
         window.setTimeout(() => {
           document.body.classList.remove('sga-boot');
         }, DURATION);
-      })();
-    </script>
-
-    <script>
-      // @ts-nocheck
-      (function () {
-        if (window.__sgaScrambleWaveInit) return;
-        window.__sgaScrambleWaveInit = true;
-
-        const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduceMotion) return;
-
-        const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-        const duration = 400;
-        const minFrameMs = 100; // slow down how often characters change (higher = slower)
-        const groups = [
-          { selector: '[data-scramble="profile"]', delay: 0 },
-          { selector: '[data-scramble="resume"]', delay: duration + 150 },
-          { selector: '[data-scramble="design"]', delay: duration * 2 + 200 },
-          { selector: '[data-scramble="coding"]', delay: duration * 2 + 200 },
-        ];
-
-        function easeOutCubic(x) {
-          return 1 - Math.pow(1 - x, 3);
-        }
-
-        function scrambleText(original, strength) {
-          let out = '';
-          for (let i = 0; i < original.length; i++) {
-            const ch = original[i];
-            if (/\s/.test(ch)) {
-              out += ch;
-              continue;
-            }
-            if (!/[A-Za-z]/.test(ch)) {
-              out += ch;
-              continue;
-            }
-            const useScramble = Math.random() < strength;
-            out += useScramble ? charset[Math.floor(Math.random() * charset.length)] : ch;
-          }
-          return out;
-        }
-
-        function collectTextNodes(el, acc = []) {
-          if (!el) return acc;
-          for (const child of el.childNodes) {
-            if (child.nodeType === Node.TEXT_NODE) {
-              if ((child.textContent || '').trim()) acc.push(child);
-            } else {
-              collectTextNodes(child, acc);
-            }
-          }
-          return acc;
-        }
-
-        function animateNode(node, delay) {
-          const original = node.textContent || '';
-          let start;
-          let lastUpdate = 0;
-
-          function step(ts) {
-            if (start === undefined) {
-              start = ts + delay;
-            }
-            if (ts < start) {
-              requestAnimationFrame(step);
-              return;
-            }
-
-            const t = Math.min(1, (ts - start) / duration);
-            const eased = easeOutCubic(t);
-            const strength = 1 - eased;
-
-            if (ts - lastUpdate >= minFrameMs || lastUpdate === 0) {
-              node.textContent = scrambleText(original, strength);
-              lastUpdate = ts;
-            }
-
-            if (t < 1) {
-              requestAnimationFrame(step);
-            } else {
-              node.textContent = original;
-            }
-          }
-
-          requestAnimationFrame(step);
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-          for (const group of groups) {
-            const el = document.querySelector(group.selector);
-            if (!el) continue;
-            const nodes = collectTextNodes(el);
-            nodes.forEach((node) => animateNode(node, group.delay));
-          }
-        });
       })();
     </script>
   </body>

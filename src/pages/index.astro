@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import ProfileCard from '../components/ProfileCard.astro';
 import Section from '../components/Section.astro';
-import SkillBar from '../components/SkillBar.astro';
 
 const educationData = [
   {
@@ -17,32 +16,45 @@ const experienceData = [
   {
     year: "2024-Current",
     institution: "",
-    degree: "Minecraft Network Owner",
-    description: "I am hosting my own Minecraft network called SkyeNet. Custom miniames & gamemodes on custom infrastructure. "
+    degree: "Minecraft Network Owner & Developer",
+    description: "I own my own Minecraft server called SkyeNet. It has custom miniames & gamemodes on custom infrastructure. "
   }
 ];
 
-const designSkills = [
-  { name: "Web Design", percentage: 85 },
-  { name: "Post Design", percentage: 80 },
-];
-
-const codingSkills = [
-  { name: "Javascript", percentage: 80 },
-  { name: "HTML/CSS", percentage: 95 },
-  { name: "Java", percentage: 95 }
+const aboutContent = [
+  "About me:",
+  "I am currently a high school student at Veterans Tribute CTA, focusing on Cyber Security",
+  "I am also running a custom minecraft Server Network called SkyeNetwork with unique mini-games and features. (Skills I've learned from this are, Java, Linux, Remote Server Management, docker)",
+  "Many of my projects are open source and can be found on my GitHub. These range from projects in Java, Web Development, and various Scripting languages. As well as tools I use for my own server.",
 ];
 ---
 
 <Layout title="Skylar Steuber - Developer Portfolio">
+  <a rel="me" href="https://uwu.social/@NobleSkye"></a>
   <main id="top" class="min-h-screen relative">
+    <div class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-20 flex-col gap-3" role="navigation" aria-label="Page tabs">
+      <a
+        href="#top"
+        class="px-4 py-2 text-sm font-semibold rounded-full border bg-primary text-dark border-primary shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+        aria-current="page"
+      >
+        About
+      </a>
+      <a
+        href="/projects"
+        class="px-4 py-2 text-sm font-semibold rounded-full border bg-dark-lighter text-gray-300 border-gray-800 hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-dark"
+      >
+        Projects
+      </a>
+    </div>
+
     <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
       <div class="w-full max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-          
+
           <!-- Profile Card -->
           <div id="profile" class="lg:col-span-1" data-scramble="profile">
-            <ProfileCard 
+            <ProfileCard
               name="Skylar Steuber"
               title="Developer"
               image="profile-image.jpeg"
@@ -50,14 +62,13 @@ const codingSkills = [
               blueskyUrl="https://bsky.app/profile/nobleskye.dev"
               githubUrl="https://github.com/NobleSkye"
               resumeUrl="/file/Skylar Steuber's Resume.pdf"
-              
             />
           </div>
 
           <!-- Main Content -->
           <div id="resume" class="lg:col-span-2 bg-dark rounded-3xl p-8 text-gray-300" data-scramble="resume">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              
+
               <!-- Left Column -->
               <div>
                 <!-- Resume Header -->
@@ -77,15 +88,19 @@ const codingSkills = [
               </div>
 
               <!-- Right Column -->
-              <div class="space-y-8">
-                <!-- Design Skills -->
-                <div data-scramble="design">
-                  <SkillBar title="Design Skills" skills={designSkills} />
-                </div>
-
-                <!-- Coding Skills -->
-                <div data-scramble="coding">
-                  <SkillBar title="Coding Skills" skills={codingSkills} />
+              <div class="space-y-6" role="region" aria-label="Right column content">
+                <div
+                  id="about-panel"
+                  role="tabpanel"
+                  aria-label="About content"
+                  class="block"
+                  data-scramble="about"
+                >
+                  <div class="bg-dark-lighter/70 border border-gray-800 rounded-2xl p-4 shadow-inner space-y-3">
+                    {aboutContent.map((line) => (
+                      <p class="text-gray-200 text-sm leading-relaxed">{line}</p>
+                    ))}
+                  </div>
                 </div>
               </div>
 
