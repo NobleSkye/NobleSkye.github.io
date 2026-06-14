@@ -1,18 +1,8 @@
 {
-  "name": "nobleskye-portfolio",
-  "type": "module",
-  "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "start": "npx serve . -p 3000"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^6.0.2",
-    "@fortawesome/fontawesome-free": "^7.1.0",
-    "astro": "^5.11.0",
-    "tailwindcss": "^3.0.0"
+    "98.css": "^0.1.21"
   }
 }
