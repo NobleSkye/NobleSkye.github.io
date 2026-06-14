@@ -317,11 +317,9 @@
                         value="https://nobleskye.dev"
                         onkeydown="
                             if (event.key === 'Enter') {
-                                const f =
-                                    document.getElementById('browser-frame');
-                                try {
-                                    f.contentWindow.navigate(this.value);
-                                } catch (e) {}
+                                event.preventDefault();
+                                document.getElementById('browser-frame').src = 'explorer/index.html';
+                                this.value = 'https://nobleskye.dev';
                             }
                         "
                     />
@@ -343,8 +341,28 @@
             <div class="taskbar-time" id="taskbar-time"></div>
         </div>
 
+        <div class="context-menu hidden" id="context-menu">
+            <button onclick="closeContextMenuWin()">Close</button>
+        </div>
+
         <script>
             const openWindows = new Set();
+            let zIndexCounter = 500;
+
+            function bringToFront(id) {
+                const w = document.getElementById(id);
+                if (!w) return;
+                zIndexCounter++;
+                w.style.zIndex = zIndexCounter;
+                document.querySelectorAll(".window").forEach((win) => {
+                    const bar = win.querySelector(".title-bar");
+                    if (bar)
+                        bar.classList.toggle(
+                            "inactive",
+                            win.id !== id,
+                        );
+                });
+            }
 
             function openWin(id) {
                 const w = document.getElementById(id);
@@ -354,6 +372,7 @@
                     addTaskbarItem(id);
                 }
                 activateTaskbar(id);
+                bringToFront(id);
             }
 
             function minimizeWin(id) {
@@ -367,6 +386,18 @@
                 w.classList.add("closed", "minimized");
                 openWindows.delete(id);
                 removeTaskbarItem(id);
+                if (id === "player-window") {
+                    const audio = document.getElementById("audio-player");
+                    if (!audio.paused) {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }
+                    document.getElementById("play-btn").textContent = "Play";
+                    document.querySelector(
+                        "#player-window .player-status",
+                    ).textContent = "Ready";
+                    document.getElementById("seek-bar").value = 0;
+                }
             }
 
             function toggleWin(id) {
@@ -376,10 +407,14 @@
                     w.classList.contains("closed")
                 ) {
                     openWin(id);
-                } else {
+                } else if (w.style.zIndex == zIndexCounter) {
                     minimizeWin(id);
+                } else {
+                    bringToFront(id);
                 }
             }
+
+            let contextTarget = null;
 
             function addTaskbarItem(id) {
                 const w = document.getElementById(id);
@@ -390,6 +425,14 @@
                 btn.className = "taskbar-item active";
                 btn.id = "tb-" + id;
                 btn.onclick = () => toggleWin(id);
+                btn.oncontextmenu = (e) => {
+                    e.preventDefault();
+                    contextTarget = id;
+                    const menu = document.getElementById("context-menu");
+                    menu.style.left = e.clientX + "px";
+                    menu.style.top = e.clientY + "px";
+                    menu.classList.remove("hidden");
+                };
                 if (icon) {
                     const img = document.createElement("img");
                     img.src = icon;
@@ -402,6 +445,15 @@
                 btn.appendChild(document.createTextNode(label));
                 container.appendChild(btn);
             }
+
+            function closeContextMenuWin() {
+                if (contextTarget) closeWin(contextTarget);
+                document.getElementById("context-menu").classList.add("hidden");
+            }
+
+            document.addEventListener("click", () => {
+                document.getElementById("context-menu").classList.add("hidden");
+            });
 
             function removeTaskbarItem(id) {
                 const btn = document.getElementById("tb-" + id);
@@ -445,25 +497,12 @@
                 w.classList.toggle("browser-maximized");
             }
 
-            function browseBack() {
-                const f = document.getElementById("browser-frame");
-                try {
-                    f.contentWindow.goBack();
-                } catch (e) {}
-            }
-
-            function browseFwd() {
-                const f = document.getElementById("browser-frame");
-                try {
-                    f.contentWindow.goFwd();
-                } catch (e) {}
-            }
+            function browseBack() {}
+            function browseFwd() {}
 
             function browseRefresh() {
-                const f = document.getElementById("browser-frame");
-                try {
-                    f.contentWindow.refresh();
-                } catch (e) {}
+                document.getElementById("browser-frame").src =
+                    "explorer/index.html";
             }
 
             function notImpl(name) {
@@ -534,6 +573,7 @@
                 const bar = win.querySelector(".title-bar");
                 let offX, offY;
                 bar.addEventListener("mousedown", function (e) {
+                    bringToFront(winId);
                     if (e.target.closest(".title-bar-controls")) return;
                     offX = e.clientX - win.offsetLeft;
                     offY = e.clientY - win.offsetTop;
@@ -575,8 +615,8 @@
             updateClock();
             setInterval(updateClock, 10000);
 
-            openWin("browser-window");
             openWin("profile-window");
+            openWin("browser-window");
         </script>
     </body>
 </html>

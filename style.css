@@ -235,6 +235,7 @@ input[type="reset"]:disabled,
     box-shadow: var(--border-window-outer), var(--border-window-inner);
     background: var(--surface);
     padding: 3px;
+    position: fixed;
 }
 
 .title-bar {
@@ -1068,7 +1069,6 @@ body {
     position: fixed;
     top: 10%;
     left: 10%;
-    z-index: 400;
 }
 
 #profile-window {
@@ -1103,6 +1103,8 @@ body {
 
 .player-window {
     width: 360px;
+    top: 15%;
+    left: 15%;
 }
 
 .player-content {
@@ -1168,7 +1170,6 @@ body {
     left: 50%;
     margin-left: -400px;
     margin-top: -300px;
-    z-index: 500;
     display: flex;
     flex-direction: column;
 }
@@ -1227,6 +1228,36 @@ body {
 
 
 
+.context-menu {
+    position: fixed;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    padding: 2px;
+    z-index: 9999;
+    min-width: 100px;
+}
+
+.context-menu button {
+    display: block;
+    width: 100%;
+    min-width: unset;
+    min-height: unset;
+    padding: 4px 12px;
+    text-align: left;
+    border: none;
+    background: none;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: "Pixelated MS Sans Serif", Arial;
+    font-size: 11px;
+    color: var(--text-color);
+}
+
+.context-menu button:hover {
+    background: var(--dialog-blue);
+    color: white;
+}
+
 .error-dialog {
     position: fixed;
     width: 360px;
@@ -1234,8 +1265,8 @@ body {
     box-shadow: var(--border-window-outer), var(--border-window-inner);
 }
 
-.error-dialog.hidden {
-    display: none;
+.hidden {
+    display: none !important;
 }
 
 .error-content {
