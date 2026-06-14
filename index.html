@@ -22,76 +22,36 @@
     <body>
         <div class="desktop" id="desktop">
             <div class="desktop-icons">
-                <div class="desktop-icon" onclick="openWin('balatro-window')">
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/balatro/balatro-logo.png&quot;);
-                        "
-                    ></div>
+                <div class="desktop-icon" onclick="openWin('balatro-window')" ondblclick="runSteam()" oncontextmenu="showDesktopMenu(event,'Balatro','public/desktop/balatro/balatro-logo.png',()=>runSteam())">
+                    <div class="desktop-icon-img" style="background-image:url('public/desktop/balatro/balatro-logo.png')"></div>
                     <span class="desktop-icon-label">Balatro</span>
                 </div>
-                <div class="desktop-icon" onclick="tetrisError()">
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/tetris/tetris.png&quot;);
-                        "
-                    ></div>
+                <div class="desktop-icon" onclick="tetrisError()" oncontextmenu="showDesktopMenu(event,'Tetris','public/desktop/tetris/tetris.png',()=>tetrisError())">
+                    <div class="desktop-icon-img" style="background-image:url('public/desktop/tetris/tetris.png')"></div>
                     <span class="desktop-icon-label">Tetris</span>
                 </div>
-                <div class="desktop-icon" onclick="openPlayer()">
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/audio_compression-1.png&quot;);
-                        "
-                    ></div>
+                <div class="desktop-icon" onclick="openPlayer()" oncontextmenu="showDesktopMenu(event,'epic.mp3','public/desktop/shortcuts/audio_compression-1.png',()=>openPlayer())">
+                    <div class="desktop-icon-img" style="background-image:url('public/desktop/shortcuts/audio_compression-1.png')"></div>
                     <span class="desktop-icon-label">epic.mp3</span>
                 </div>
-                <div class="desktop-icon" onclick="openWin('profile-window')">
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/paint_file-1.png&quot;);
-                        "
-                    ></div>
+                <div class="desktop-icon" onclick="openWin('profile-window')" oncontextmenu="showDesktopMenu(event,'profile.jpg','public/desktop/shortcuts/paint_file-1.png',()=>openWin('profile-window'))">
+                    <div class="desktop-icon-img" style="background-image:url('public/desktop/shortcuts/paint_file-1.png')"></div>
                     <span class="desktop-icon-label">profile.jpg</span>
                 </div>
-                <div class="desktop-icon" onclick="openWin('hang-window')">
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/paint_file-1.png&quot;);
-                        "
-                    ></div>
+                <div class="desktop-icon" onclick="openWin('hang-window')" oncontextmenu="showDesktopMenu(event,'hang_in_there.png','public/desktop/shortcuts/paint_file-1.png',()=>openWin('hang-window'))">
+                    <div class="desktop-icon-img" style="background-image:url('public/desktop/shortcuts/paint_file-1.png')"></div>
                     <span class="desktop-icon-label">hang_in_there.png</span>
                 </div>
-                <div class="desktop-icon" onclick="openWin('browser-window')">
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/msie2-1.png&quot;);
-                        "
-                    ></div>
+                <div class="desktop-icon" onclick="openWin('browser-window')" oncontextmenu="showDesktopMenu(event,'Internet Explorer','public/desktop/shortcuts/msie2-1.png',()=>openWin('browser-window'))">
+                    <div class="desktop-icon-img" style="background-image:url('public/desktop/shortcuts/msie2-1.png')"></div>
                     <span class="desktop-icon-label">Internet Explorer</span>
                 </div>
-                <div class="desktop-icon" onclick="driverInstall()">
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/installer_generic_old-1.png&quot;);
-                        "
-                    ></div>
+                <div class="desktop-icon" onclick="driverInstall()" oncontextmenu="showDesktopMenu(event,'AGP Driver Install','public/desktop/shortcuts/installer_generic_old-1.png',()=>driverInstall())">
+                    <div class="desktop-icon-img" style="background-image:url('public/desktop/shortcuts/installer_generic_old-1.png')"></div>
                     <span class="desktop-icon-label">AGP Driver Install</span>
                 </div>
-                <div class="desktop-icon" onclick="notImpl('Image')">
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/imagjpeg-1.png&quot;);
-                        "
-                    ></div>
+                <div class="desktop-icon" onclick="notImpl('Image')" oncontextmenu="showDesktopMenu(event,'Screenshot','public/desktop/shortcuts/imagjpeg-1.png',()=>notImpl('Image'))">
+                    <div class="desktop-icon-img" style="background-image:url('public/desktop/shortcuts/imagjpeg-1.png')"></div>
                     <span class="desktop-icon-label">Screenshot</span>
                 </div>
             </div>
@@ -371,9 +331,7 @@
             <div class="taskbar-time" id="taskbar-time"></div>
         </div>
 
-        <div class="context-menu hidden" id="context-menu">
-            <button onclick="closeContextMenuWin()">Close</button>
-        </div>
+        <div class="context-menu hidden" id="context-menu"></div>
 
         <script>
             const openWindows = new Set();
@@ -440,7 +398,34 @@
                 }
             }
 
-            let contextTarget = null;
+            function showContextMenu(e, items) {
+                e.preventDefault();
+                const menu = document.getElementById("context-menu");
+                menu.innerHTML = "";
+                items.forEach((item) => {
+                    const btn = document.createElement("button");
+                    btn.textContent = item.label;
+                    if (item.disabled) btn.disabled = true;
+                    btn.onclick = (ev) => {
+                        ev.stopPropagation();
+                        menu.classList.add("hidden");
+                        item.action();
+                    };
+                    menu.appendChild(btn);
+                });
+                menu.style.left = e.clientX + "px";
+                menu.style.top = e.clientY + "px";
+                menu.classList.remove("hidden");
+            }
+
+            function showDesktopMenu(e, name, icon, openAction) {
+                showContextMenu(e, [
+                    {
+                        label: "Open",
+                        action: openAction,
+                    },
+                ]);
+            }
 
             function addTaskbarItem(id) {
                 const w = document.getElementById(id);
@@ -452,12 +437,12 @@
                 btn.id = "tb-" + id;
                 btn.onclick = () => toggleWin(id);
                 btn.oncontextmenu = (e) => {
-                    e.preventDefault();
-                    contextTarget = id;
-                    const menu = document.getElementById("context-menu");
-                    menu.style.left = e.clientX + "px";
-                    menu.style.top = e.clientY + "px";
-                    menu.classList.remove("hidden");
+                    showContextMenu(e, [
+                        {
+                            label: "Close",
+                            action: () => closeWin(id),
+                        },
+                    ]);
                 };
                 if (icon) {
                     const img = document.createElement("img");
@@ -470,11 +455,6 @@
                 }
                 btn.appendChild(document.createTextNode(label));
                 container.appendChild(btn);
-            }
-
-            function closeContextMenuWin() {
-                if (contextTarget) closeWin(contextTarget);
-                document.getElementById("context-menu").classList.add("hidden");
             }
 
             document.addEventListener("click", () => {
@@ -660,6 +640,15 @@
             makeDraggable("browser-window");
             makeDraggable("error-dialog");
             makeDraggable("error-dialog2");
+
+            function runSteam() {
+                const a = document.createElement('a');
+                a.href = 'steam://run/2379780';
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
 
             function updateClock() {
                 const now = new Date();

@@ -1253,9 +1253,15 @@ body {
     color: var(--text-color);
 }
 
-.context-menu button:hover {
+.context-menu button:hover:not(:disabled) {
     background: var(--dialog-blue);
     color: white;
+}
+
+.context-menu button:disabled {
+    color: var(--button-shadow);
+    text-shadow: 1px 1px 0 var(--button-highlight);
+    cursor: default;
 }
 
 .error-dialog {
@@ -1432,12 +1438,12 @@ body {
 
 .balatro-window {
     width: fit-content;
-    max-width: calc(70vw - 28px);
+    max-width: 90vw;
 }
 
 .balatro-bg {
-    width: 1344px;
-    max-width: calc(56vw - 12px);
+    width: calc(50vw - 22px);
+    max-width: 960px;
     aspect-ratio: 1920 / 923;
     background-image: url("public/desktop/balatro/Balatro-Solitaire.png");
     background-size: contain;
@@ -1445,3 +1451,5 @@ body {
     background-position: center;
     image-rendering: auto;
 }
+
+
