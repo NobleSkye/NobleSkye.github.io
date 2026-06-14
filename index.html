@@ -298,7 +298,7 @@
                     ></button>
                     <button
                         aria-label="Maximize"
-                        onclick="maximizeBrowser()"
+                        disabled
                     ></button>
                     <button
                         aria-label="Close"
@@ -315,19 +315,48 @@
                         type="text"
                         class="browser-url"
                         id="browser-url"
-                        value="https://nobleskye.dev"
+                        value="https://nobleskye.dev/"
                         onkeydown="
                             if (event.key === 'Enter') {
                                 event.preventDefault();
-                                document.getElementById('browser-frame').src = 'explorer/index.html';
-                                this.value = 'https://nobleskye.dev';
+                                const input = this.value.trim();
+                                const f =
+                                    document.getElementById('browser-frame');
+                                let path = input.replace(
+                                    /^https?:\/\/(?:www\.)?(?:98\.)?nobleskye\.dev\//,
+                                    '',
+                                );
+                                path = path.replace(/^https?:\/\/[^\/]+/, '');
+                                if (
+                                    !path ||
+                                    path.startsWith('http://') ||
+                                    path.startsWith('https://')
+                                ) {
+                                    f.src = 'home/index.html';
+                                    this.value = 'https://nobleskye.dev/';
+                                    return;
+                                }
+                                path = path.replace(/^\//, '');
+                                if (path && !path.includes('.')) {
+                                    path = 'home/' + path + '.html';
+                                }
+                                f.src = path || 'home/index.html';
+                                if (!path || path === 'home/index.html') {
+                                    this.value = 'https://nobleskye.dev/';
+                                } else {
+                                    const display = path
+                                        .replace(/^home\//, '')
+                                        .replace(/\.html$/, '');
+                                    this.value =
+                                        'https://nobleskye.dev/' + display;
+                                }
                             }
                         "
                     />
                 </div>
                 <div class="field-border browser-content">
                     <iframe
-                        src="explorer/index.html"
+                        src="home/index.html"
                         id="browser-frame"
                         class="browser-frame"
                     ></iframe>
@@ -357,11 +386,7 @@
                 w.style.zIndex = zIndexCounter;
                 document.querySelectorAll(".window").forEach((win) => {
                     const bar = win.querySelector(".title-bar");
-                    if (bar)
-                        bar.classList.toggle(
-                            "inactive",
-                            win.id !== id,
-                        );
+                    if (bar) bar.classList.toggle("inactive", win.id !== id);
                 });
             }
 
@@ -503,8 +528,41 @@
 
             function browseRefresh() {
                 document.getElementById("browser-frame").src =
-                    "explorer/index.html";
+                    "home/index.html";
+                document.getElementById("browser-url").value =
+                    "https://nobleskye.dev/";
             }
+
+            function updateBrowserUrl(path) {
+                const bar = document.getElementById("browser-url");
+                const display = path
+                    .replace(/^home\//, "")
+                    .replace(/\.html$/, "");
+                bar.value =
+                    path === "home/index.html"
+                        ? "https://nobleskye.dev/"
+                        : "https://nobleskye.dev/" + display;
+            }
+
+            document
+                .getElementById("browser-frame")
+                .addEventListener("load", function () {
+                    try {
+                        const full = this.contentWindow.location.href;
+                        const path = full.replace(/^https?:\/\/[^\/]+/, "");
+                        const bar = document.getElementById("browser-url");
+                        const display = path
+                            .replace(/^\/home\//, "/")
+                            .replace(/\.html$/, "");
+                        bar.value =
+                            path === "/" || path === "/home/index.html"
+                                ? "https://nobleskye.dev/"
+                                : "https://nobleskye.dev" + display;
+                    } catch (e) {
+                        document.getElementById("browser-url").value =
+                            "https://nobleskye.dev/";
+                    }
+                });
 
             function notImpl(name) {
                 alert(name + " is not implemented yet.");
@@ -618,6 +676,14 @@
 
             openWin("profile-window");
             openWin("browser-window");
+
+            const path = window.location.pathname.replace(/\/$/, '');
+            const certMatch = path.match(/\/(?:home\/)?certs(?:\.html)?$/);
+            if (certMatch) {
+                const f = document.getElementById('browser-frame');
+                f.src = 'home/certs.html';
+                document.getElementById('browser-url').value = 'https://nobleskye.dev/certs';
+            }
         </script>
     </body>
 </html>
