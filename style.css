@@ -1439,7 +1439,7 @@ body {
     width: 1344px;
     max-width: calc(56vw - 12px);
     aspect-ratio: 1920 / 923;
-    background-image: url("public/images/Balatro-Solitaire.png");
+    background-image: url("public/desktop/balatro/Balatro-Solitaire.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
