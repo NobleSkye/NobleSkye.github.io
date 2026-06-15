@@ -10,8 +10,9 @@
         <meta name="twitter:card" content="summary" />
         <link rel="stylesheet" href="https://unpkg.com/98.css" />
         <link rel="stylesheet" href="style.css" />
-        <script scr="katja.js" />
+        <script src="katja.js" />
         <link rel="stylesheet" href="kitten.css" />
+        <link rel="icon" href="public/assets/favico.ico" />
     </head>
 
     <body>
@@ -55,7 +56,7 @@
                 class="window balatro-window minimized"
                 id="balatro-window"
                 data-label="Balatro"
-                data-icon="public/desktop/balatro-logo.png"
+                data-icon="public/desktop/balatro/balatro-logo.png"
             >
                 <div class="title-bar">
                     <div class="title-bar-text">Balatro</div>
@@ -137,7 +138,7 @@
             class="window img-win minimized"
             id="profile-window"
             data-label="profile.png"
-            data-icon="public/desktop/paint_file-1.png"
+            data-icon="public/desktop/shortcuts/paint_file-1.png"
         >
             <div class="title-bar">
                 <div class="title-bar-text">profile.png</div>
@@ -162,7 +163,7 @@
             class="window img-win minimized"
             id="hang-window"
             data-label="hang_in_there"
-            data-icon="public/desktop/paint_file-1.png"
+            data-icon="public/desktop/shortcuts/paint_file-1.png"
         >
             <div class="title-bar">
                 <div class="title-bar-text">hang_in_there.jpg</div>
@@ -187,7 +188,7 @@
             class="window player-window minimized"
             id="player-window"
             data-label="epic.mp3"
-            data-icon="public/desktop/audio_compression-1.png"
+            data-icon="public/desktop/shortcuts/audio_compression-1.png"
         >
             <div class="title-bar">
                 <div class="title-bar-text">epic.mp3 - Media Player</div>
@@ -242,7 +243,7 @@
             class="window browser-window minimized"
             id="browser-window"
             data-label="Internet Explorer"
-            data-icon="public/desktop/msie2-1.png"
+            data-icon="public/desktop/shortcuts/msie2-1.png"
         >
             <div class="title-bar">
                 <div class="title-bar-text">About Me - Internet Explorer</div>
@@ -251,10 +252,7 @@
                         aria-label="Minimize"
                         onclick="minimizeWin('browser-window')"
                     ></button>
-                    <button
-                        aria-label="Maximize"
-                        onclick="maximizeBrowser()"
-                    ></button>
+                    <button aria-label="Maximize" disabled></button>
                     <button
                         aria-label="Close"
                         onclick="closeWin('browser-window')"
@@ -270,20 +268,48 @@
                         type="text"
                         class="browser-url"
                         id="browser-url"
-                        value="https://nobleskye.dev"
+                        value="https://nobleskye.dev/"
                         onkeydown="
                             if (event.key === 'Enter') {
-                                const f = document.getElementById('browser-frame');
-                                try {
-                                    f.contentWindow.navigate(this.value);
-                                } catch (e) {}
+                                event.preventDefault();
+                                const input = this.value.trim();
+                                const f =
+                                    document.getElementById('browser-frame');
+                                let path = input.replace(
+                                    /^https?:\/\/(?:www\.)?(?:98\.)?nobleskye\.dev\//,
+                                    '',
+                                );
+                                path = path.replace(/^https?:\/\/[^\/]+/, '');
+                                if (
+                                    !path ||
+                                    path.startsWith('http://') ||
+                                    path.startsWith('https://')
+                                ) {
+                                    f.src = 'home/index.html';
+                                    this.value = 'https://nobleskye.dev/';
+                                    return;
+                                }
+                                path = path.replace(/^\//, '');
+                                if (path && !path.includes('.')) {
+                                    path = 'home/' + path + '.html';
+                                }
+                                f.src = path || 'home/index.html';
+                                if (!path || path === 'home/index.html') {
+                                    this.value = 'https://nobleskye.dev/';
+                                } else {
+                                    const display = path
+                                        .replace(/^home\//, '')
+                                        .replace(/\.html$/, '');
+                                    this.value =
+                                        'https://nobleskye.dev/' + display;
+                                }
                             }
                         "
                     />
                 </div>
                 <div class="field-border browser-content">
                     <iframe
-                        src="explorer/index.html"
+                        src="home/index.html"
                         id="browser-frame"
                         class="browser-frame"
                     ></iframe>

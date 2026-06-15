@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>~*Skylar's Cool Site*~</title>
+        <style>
+            body {
+                background: #2f2963;
+                color: #e0e0e0;
+                font-family: Verdana, Arial, sans-serif;
+                font-size: 14px;
+                margin: 0;
+                padding: 0;
+            }
+            table {
+                border-collapse: collapse;
+            }
+            td {
+                vertical-align: top;
+            }
+            a {
+                color: #ffff00;
+                text-decoration: underline;
+            }
+            a:hover {
+                color: #ff00ff;
+            }
+            .container {
+                width: 100%;
+                min-height: 100vh;
+                background: #2f2963;
+                padding: 0;
+            }
+            .header {
+                background: #000080;
+                text-align: center;
+                padding: 12px;
+                border-bottom: 3px ridge #808080;
+            }
+            .header h1 {
+                font-size: 28px;
+                margin: 0;
+                color: #ff00ff;
+                text-shadow:
+                    2px 2px 0 #ffff00,
+                    -1px -1px 0 #00ffff;
+                letter-spacing: 2px;
+            }
+            .header .subtitle {
+                font-size: 16px;
+                color: #00ffff;
+                margin: 4px 0 0 0;
+            }
+            .nav {
+                background: #c0c0c0;
+                padding: 8px;
+                text-align: center;
+                border-bottom: 2px solid #808080;
+            }
+            .nav a {
+                color: #000080;
+                font-weight: bold;
+                font-size: 16px;
+                padding: 4px 16px;
+                text-decoration: none;
+            }
+            .nav a:hover {
+                color: #ff0000;
+                background: #ffff00;
+            }
+            .nav .separator {
+                color: #808080;
+                font-weight: bold;
+            }
+            .main {
+                background: #2f2963;
+                padding: 16px;
+                min-height: 400px;
+            }
+            .section-title {
+                font-size: 22px;
+                color: #ff9900;
+                text-align: center;
+                margin: 16px 0;
+                border-bottom: 2px dashed #ff9900;
+                padding-bottom: 4px;
+            }
+            .project-box {
+                background: #00008b;
+                border: 2px ridge #c0c0c0;
+                padding: 12px;
+                margin: 12px 0;
+            }
+            .project-box h3 {
+                color: #ffcc00;
+                margin: 0 0 6px 0;
+                font-size: 18px;
+            }
+            .project-box p {
+                color: #d3d3d3;
+                margin: 0;
+                line-height: 1.6;
+                font-size: 13px;
+            }
+            .project-box a {
+                color: #00ffff;
+            }
+            .project-box a:hover {
+                color: #ff00ff;
+            }
+            .links-section {
+                text-align: center;
+                margin: 16px 0;
+            }
+            .links-section a {
+                display: inline-block;
+                margin: 4px 12px;
+                font-size: 18px;
+                font-weight: bold;
+                color: #00ff00;
+            }
+            .links-section a:hover {
+                color: #ff0000;
+                background: #000;
+            }
+            .footer {
+                background: #000080;
+                text-align: center;
+                padding: 8px;
+                border-top: 3px ridge #808080;
+                font-size: 12px;
+                color: #c0c0c0;
+            }
+            .footer .counter {
+                font-family: "Courier New", monospace;
+                background: #000;
+                color: #00ff00;
+                padding: 2px 8px;
+                border: 1px inset #808080;
+                display: inline-block;
+                margin: 4px 0;
+            }
+            hr {
+                border: 0;
+                height: 4px;
+                background: linear-gradient(
+                    90deg,
+                    #ff0000,
+                    #ffff00,
+                    #00ff00,
+                    #00ffff,
+                    #0000ff,
+                    #ff00ff,
+                    #ff0000
+                );
+                margin: 16px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>~* Skylar's Corner *~</h1>
+                <p class="subtitle">
+                    Welcome 2 my little slice of the WORLD WIDE WEB!
+                </p>
+            </div>
+
+            <div class="nav">
+                <a href="/home/index.html">Home</a>
+                <span class="separator">|</span>
+                <a href="/home/certs.html">Certs</a>
+                <span class="separator">|</span>
+                <a href="https://github.com/nobleskye" target="_blank"
+                    >GitHub</a
+                >
+                <span class="separator">|</span>
+                <a href="https://bsky.app/profile/nobleskye.dev" target="_blank"
+                    >Bluesky</a
+                >
+                <span class="separator">|</span>
+                <a href="mailto:hi@nobleskye.dev">Email Me!</a>
+            </div>
+
+            <div class="main">
+                <div class="section-title">&#10022; About Me &#10022;</div>
+
+                <p style="text-align: center; font-size: 16px">
+                    Hi, I'm <b>Skylar</b>! I build things &mdash; web, software,
+                    Minecraft servers, you name it!
+                </p>
+
+                <hr />
+
+                <div class="section-title">&#9733; Projects &#9733;</div>
+
+                <div class="project-box">
+                    <h3>&#9654; SkyeNetwork</h3>
+                    <p>
+                        A Modern Minecraft server hosted &amp; owned since 2020.
+                        This server is a passion project and ever-expanding to
+                        learn more about Java &amp; server development. <br /><a
+                            href="https://skyemc.net"
+                            target="_blank"
+                            >[ Click here to visit! ]</a
+                        >
+                    </p>
+                </div>
+
+                <div class="project-box">
+                    <h3>&#9654; Pyrodactyl</h3>
+                    <p>
+                        Fork of the popular game server manager Pterodactyl that
+                        is maintained &amp; OSS by Pyro.host. <br /><a
+                            href="https://pyrodactyl.dev/"
+                            target="_blank"
+                            >[ Learn More ]</a
+                        >
+                    </p>
+                </div>
+
+                <hr />
+
+                <div class="section-title">&#9835; Cool Links &#9835;</div>
+
+                <div class="links-section">
+                    <a href="https://github.com/nobleskye" target="_blank"
+                        >[ GitHub ]</a
+                    >
+                    <a
+                        href="https://bsky.app/profile/nobleskye.dev"
+                        target="_blank"
+                        >[ Bluesky ]</a
+                    >
+                    <a href="mailto:hi@nobleskye.dev" target="_blank"
+                        >[ Email ]</a
+                    >
+                    <br /><br />
+                    <a href="/home/certs.html" target="_self"
+                        ><font size="5"
+                            >&#10022; View My Certifications! &#10022;</font
+                        ></a
+                    >
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>&copy; 2026 Skylar's Corner of the Internet</p>
+                <p>You are visitor # <span class="counter">00001337</span></p>
+                <p>
+                    <img
+                        src="https://i.imgur.com/invalid.gif"
+                        alt="made with notepad"
+                    />
+                    <img
+                        src="https://i.imgur.com/invalid.gif"
+                        alt="best viewed with internet explorer"
+                    />
+                    <img
+                        src="https://i.imgur.com/invalid.gif"
+                        alt="web design by yours truly"
+                    />
+                </p>
+                <p style="font-size: 10px; color: #808080">
+                    Last updated: June 14, 2026
+                </p>
+            </div>
+        </div>
+
+        <script>
+            let vid = localStorage.getItem("visitor_id");
+            if (!vid) {
+                vid = String(Math.floor(Math.random() * 9000000) + 1000000);
+                localStorage.setItem("visitor_id", vid);
+            }
+            const vc = Number(localStorage.getItem("visit_count") || 0) + 1;
+            localStorage.setItem("visit_count", vc);
+            document.querySelector(".counter").textContent = vid;
+        </script>
+    </body>
+</html>
