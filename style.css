@@ -1224,10 +1224,6 @@ body {
     display: block;
 }
 
-
-
-
-
 .context-menu {
     position: fixed;
     background: var(--surface);
@@ -1302,8 +1298,6 @@ body {
     justify-content: center;
     padding: 8px 0 0 0;
 }
-
-
 
 .desktop {
     height: calc(100vh - 40px);
@@ -1452,4 +1446,25 @@ body {
     image-rendering: auto;
 }
 
-
+#balatro > .desktop-icon-img {
+    background-image: url("public/desktop/balatro/balatro-logo.png");
+}
+#tetris > .desktop-icon-img {
+    background-image: url("public/desktop/tetris/tetris.png");
+}
+#epic > .desktop-icon-img {
+    background-image: url("public/desktop/shortcuts/audio_compression-1.png");
+}
+#profile > .desktop-icon-img,
+#hang_in_there > .desktop-icon-img {
+    background-image: url("public/desktop/shortcuts/paint_file-1.png");
+}
+#browser > .desktop-icon-img {
+    background-image: url("public/desktop/shortcuts/msie2-1.png");
+}
+#driver_install > .desktop-icon-img {
+    background-image: url("public/desktop/shortcuts/installer_generic_old-1.png");
+}
+#screenshot > .desktop-icon-img {
+    background-image: url("public/desktop/shortcuts/imagjpeg-1.png");
+}

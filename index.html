@@ -17,170 +17,42 @@
         <link rel="stylesheet" href="https://unpkg.com/98.css" />
         <link rel="stylesheet" href="style.css" />
         <link rel="icon" href="public/assets/favico.ico" />
+        <script src="script.js" defer></script>
     </head>
 
     <body>
         <div class="desktop" id="desktop">
             <div class="desktop-icons">
-                <div
-                    class="desktop-icon"
-                    onclick="openWin('balatro-window')"
-                    ondblclick="runSteam()"
-                    oncontextmenu="
-                        showDesktopMenu(
-                            event,
-                            'Balatro',
-                            'public/desktop/balatro/balatro-logo.png',
-                            () => runSteam(),
-                        )
-                    "
-                >
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/balatro/balatro-logo.png&quot;);
-                        "
-                    ></div>
+                <div id="balatro" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">Balatro</span>
                 </div>
-                <div
-                    class="desktop-icon"
-                    onclick="tetrisError()"
-                    oncontextmenu="
-                        showDesktopMenu(
-                            event,
-                            'Tetris',
-                            'public/desktop/tetris/tetris.png',
-                            () => tetrisError(),
-                        )
-                    "
-                >
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/tetris/tetris.png&quot;);
-                        "
-                    ></div>
+                <div id="tetris" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">Tetris</span>
                 </div>
-                <div
-                    class="desktop-icon"
-                    onclick="openPlayer()"
-                    oncontextmenu="
-                        showDesktopMenu(
-                            event,
-                            'epic.mp3',
-                            'public/desktop/shortcuts/audio_compression-1.png',
-                            () => openPlayer(),
-                        )
-                    "
-                >
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/audio_compression-1.png&quot;);
-                        "
-                    ></div>
+                <div id="epic" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">epic.mp3</span>
                 </div>
-                <div
-                    class="desktop-icon"
-                    onclick="openWin('profile-window')"
-                    oncontextmenu="
-                        showDesktopMenu(
-                            event,
-                            'profile.jpg',
-                            'public/desktop/shortcuts/paint_file-1.png',
-                            () => openWin('profile-window'),
-                        )
-                    "
-                >
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/paint_file-1.png&quot;);
-                        "
-                    ></div>
+                <div id="profile" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">profile.jpg</span>
                 </div>
-                <div
-                    class="desktop-icon"
-                    onclick="openWin('hang-window')"
-                    oncontextmenu="
-                        showDesktopMenu(
-                            event,
-                            'hang_in_there.png',
-                            'public/desktop/shortcuts/paint_file-1.png',
-                            () => openWin('hang-window'),
-                        )
-                    "
-                >
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/paint_file-1.png&quot;);
-                        "
-                    ></div>
+                <div id="hang_in_there" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">hang_in_there.png</span>
                 </div>
-                <div
-                    class="desktop-icon"
-                    onclick="openWin('browser-window')"
-                    oncontextmenu="
-                        showDesktopMenu(
-                            event,
-                            'Internet Explorer',
-                            'public/desktop/shortcuts/msie2-1.png',
-                            () => openWin('browser-window'),
-                        )
-                    "
-                >
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/msie2-1.png&quot;);
-                        "
-                    ></div>
+                <div id="browser" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">Internet Explorer</span>
                 </div>
-                <div
-                    class="desktop-icon"
-                    onclick="driverInstall()"
-                    oncontextmenu="
-                        showDesktopMenu(
-                            event,
-                            'AGP Driver Install',
-                            'public/desktop/shortcuts/installer_generic_old-1.png',
-                            () => driverInstall(),
-                        )
-                    "
-                >
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/installer_generic_old-1.png&quot;);
-                        "
-                    ></div>
+                <div id="driver_install" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">AGP Driver Install</span>
                 </div>
-                <div
-                    class="desktop-icon"
-                    onclick="notImpl('Image')"
-                    oncontextmenu="
-                        showDesktopMenu(
-                            event,
-                            'Screenshot',
-                            'public/desktop/shortcuts/imagjpeg-1.png',
-                            () => notImpl('Image'),
-                        )
-                    "
-                >
-                    <div
-                        class="desktop-icon-img"
-                        style="
-                            background-image: url(&quot;public/desktop/shortcuts/imagjpeg-1.png&quot;);
-                        "
-                    ></div>
+                <div id="screenshot" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">Screenshot</span>
                 </div>
             </div>
@@ -194,15 +66,9 @@
                 <div class="title-bar">
                     <div class="title-bar-text">Balatro</div>
                     <div class="title-bar-controls">
-                        <button
-                            aria-label="Minimize"
-                            onclick="minimizeWin('balatro-window')"
-                        ></button>
+                        <button aria-label="Minimize"></button>
                         <button aria-label="Maximize" disabled></button>
-                        <button
-                            aria-label="Close"
-                            onclick="closeWin('balatro-window')"
-                        ></button>
+                        <button aria-label="Close"></button>
                     </div>
                 </div>
                 <div class="window-body">
@@ -219,7 +85,7 @@
             <div class="title-bar">
                 <div class="title-bar-text">Error</div>
                 <div class="title-bar-controls">
-                    <button aria-label="Close" onclick="closeError()"></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -234,7 +100,7 @@
                     </div>
                 </div>
                 <div class="error-buttons">
-                    <button onclick="closeError()">OK</button>
+                    <button class="ok-btn">OK</button>
                 </div>
             </div>
         </div>
@@ -247,7 +113,7 @@
             <div class="title-bar">
                 <div class="title-bar-text">Error</div>
                 <div class="title-bar-controls">
-                    <button aria-label="Close" onclick="closeError2()"></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -262,7 +128,7 @@
                     </div>
                 </div>
                 <div class="error-buttons">
-                    <button onclick="closeError2()">OK</button>
+                    <button class="ok-btn">OK</button>
                 </div>
             </div>
         </div>
@@ -276,15 +142,9 @@
             <div class="title-bar">
                 <div class="title-bar-text">profile.png</div>
                 <div class="title-bar-controls">
-                    <button
-                        aria-label="Minimize"
-                        onclick="minimizeWin('profile-window')"
-                    ></button>
+                    <button aria-label="Minimize"></button>
                     <button aria-label="Maximize" disabled></button>
-                    <button
-                        aria-label="Close"
-                        onclick="closeWin('profile-window')"
-                    ></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -301,15 +161,9 @@
             <div class="title-bar">
                 <div class="title-bar-text">hang_in_there.jpg</div>
                 <div class="title-bar-controls">
-                    <button
-                        aria-label="Minimize"
-                        onclick="minimizeWin('hang-window')"
-                    ></button>
+                    <button aria-label="Minimize"></button>
                     <button aria-label="Maximize" disabled></button>
-                    <button
-                        aria-label="Close"
-                        onclick="closeWin('hang-window')"
-                    ></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -326,15 +180,9 @@
             <div class="title-bar">
                 <div class="title-bar-text">epic.mp3 - Media Player</div>
                 <div class="title-bar-controls">
-                    <button
-                        aria-label="Minimize"
-                        onclick="minimizeWin('player-window')"
-                    ></button>
+                    <button aria-label="Minimize"></button>
                     <button aria-label="Maximize" disabled></button>
-                    <button
-                        aria-label="Close"
-                        onclick="closeWin('player-window')"
-                    ></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -347,20 +195,13 @@
                         </div>
                     </div>
                     <div class="player-controls">
-                        <button
-                            class="player-btn"
-                            onclick="playPause()"
-                            id="play-btn"
-                        >
-                            Play
-                        </button>
+                        <button class="player-btn" id="play-btn">Play</button>
                         <input
                             type="range"
                             class="player-seek"
                             id="seek-bar"
                             value="0"
                             max="100"
-                            oninput="seekAudio()"
                         />
                     </div>
                     <audio
@@ -381,63 +222,21 @@
             <div class="title-bar">
                 <div class="title-bar-text">About Me - Internet Explorer</div>
                 <div class="title-bar-controls">
-                    <button
-                        aria-label="Minimize"
-                        onclick="minimizeWin('browser-window')"
-                    ></button>
+                    <button aria-label="Minimize"></button>
                     <button aria-label="Maximize" disabled></button>
-                    <button
-                        aria-label="Close"
-                        onclick="closeWin('browser-window')"
-                    ></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
                 <div class="browser-toolbar">
-                    <button onclick="browseBack()">Back</button>
-                    <button onclick="browseFwd()">Forward</button>
-                    <button onclick="browseRefresh()">Refresh</button>
+                    <button id="browse-back">Back</button>
+                    <button id="browse-fwd">Forward</button>
+                    <button id="browse-refresh">Refresh</button>
                     <input
                         type="text"
                         class="browser-url"
                         id="browser-url"
                         value="https://nobleskye.dev/"
-                        onkeydown="
-                            if (event.key === 'Enter') {
-                                event.preventDefault();
-                                const input = this.value.trim();
-                                const f =
-                                    document.getElementById('browser-frame');
-                                let path = input.replace(
-                                    /^https?:\/\/(?:www\.)?(?:98\.)?nobleskye\.dev\//,
-                                    '',
-                                );
-                                path = path.replace(/^https?:\/\/[^\/]+/, '');
-                                if (
-                                    !path ||
-                                    path.startsWith('http://') ||
-                                    path.startsWith('https://')
-                                ) {
-                                    f.src = 'home/index.html';
-                                    this.value = 'https://nobleskye.dev/';
-                                    return;
-                                }
-                                path = path.replace(/^\//, '');
-                                if (path && !path.includes('.')) {
-                                    path = 'home/' + path + '.html';
-                                }
-                                f.src = path || 'home/index.html';
-                                if (!path || path === 'home/index.html') {
-                                    this.value = 'https://nobleskye.dev/';
-                                } else {
-                                    const display = path
-                                        .replace(/^home\//, '')
-                                        .replace(/\.html$/, '');
-                                    this.value =
-                                        'https://nobleskye.dev/' + display;
-                                }
-                            }
-                        "
                     />
                 </div>
                 <div class="field-border browser-content">
@@ -458,348 +257,5 @@
         </div>
 
         <div class="context-menu hidden" id="context-menu"></div>
-
-        <script>
-            const openWindows = new Set();
-            let zIndexCounter = 500;
-
-            function bringToFront(id) {
-                const w = document.getElementById(id);
-                if (!w) return;
-                zIndexCounter++;
-                w.style.zIndex = zIndexCounter;
-                document.querySelectorAll(".window").forEach((win) => {
-                    const bar = win.querySelector(".title-bar");
-                    if (bar) bar.classList.toggle("inactive", win.id !== id);
-                });
-            }
-
-            function openWin(id) {
-                const w = document.getElementById(id);
-                w.classList.remove("minimized", "closed");
-                if (!openWindows.has(id)) {
-                    openWindows.add(id);
-                    addTaskbarItem(id);
-                }
-                activateTaskbar(id);
-                bringToFront(id);
-            }
-
-            function minimizeWin(id) {
-                const w = document.getElementById(id);
-                w.classList.add("minimized");
-                deactivateTaskbar(id);
-            }
-
-            function closeWin(id) {
-                const w = document.getElementById(id);
-                w.classList.add("closed", "minimized");
-                openWindows.delete(id);
-                removeTaskbarItem(id);
-                if (id === "player-window") {
-                    const audio = document.getElementById("audio-player");
-                    if (!audio.paused) {
-                        audio.pause();
-                        audio.currentTime = 0;
-                    }
-                    document.getElementById("play-btn").textContent = "Play";
-                    document.querySelector(
-                        "#player-window .player-status",
-                    ).textContent = "Ready";
-                    document.getElementById("seek-bar").value = 0;
-                }
-            }
-
-            function toggleWin(id) {
-                const w = document.getElementById(id);
-                if (
-                    w.classList.contains("minimized") ||
-                    w.classList.contains("closed")
-                ) {
-                    openWin(id);
-                } else if (w.style.zIndex == zIndexCounter) {
-                    minimizeWin(id);
-                } else {
-                    bringToFront(id);
-                }
-            }
-
-            function showContextMenu(e, items) {
-                e.preventDefault();
-                const menu = document.getElementById("context-menu");
-                menu.innerHTML = "";
-                items.forEach((item) => {
-                    const btn = document.createElement("button");
-                    btn.textContent = item.label;
-                    if (item.disabled) btn.disabled = true;
-                    btn.onclick = (ev) => {
-                        ev.stopPropagation();
-                        menu.classList.add("hidden");
-                        item.action();
-                    };
-                    menu.appendChild(btn);
-                });
-                menu.style.left = e.clientX + "px";
-                menu.style.top = e.clientY + "px";
-                menu.classList.remove("hidden");
-            }
-
-            function showDesktopMenu(e, name, icon, openAction) {
-                showContextMenu(e, [
-                    {
-                        label: "Open",
-                        action: openAction,
-                    },
-                ]);
-            }
-
-            function addTaskbarItem(id) {
-                const w = document.getElementById(id);
-                const label = w.dataset.label || id;
-                const icon = w.dataset.icon || "";
-                const container = document.getElementById("taskbar-items");
-                const btn = document.createElement("button");
-                btn.className = "taskbar-item active";
-                btn.id = "tb-" + id;
-                btn.onclick = () => toggleWin(id);
-                btn.oncontextmenu = (e) => {
-                    showContextMenu(e, [
-                        {
-                            label: "Close",
-                            action: () => closeWin(id),
-                        },
-                    ]);
-                };
-                if (icon) {
-                    const img = document.createElement("img");
-                    img.src = icon;
-                    img.style.width = "16px";
-                    img.style.height = "16px";
-                    img.style.marginRight = "4px";
-                    img.style.imageRendering = "auto";
-                    btn.appendChild(img);
-                }
-                btn.appendChild(document.createTextNode(label));
-                container.appendChild(btn);
-            }
-
-            document.addEventListener("click", () => {
-                document.getElementById("context-menu").classList.add("hidden");
-            });
-
-            function removeTaskbarItem(id) {
-                const btn = document.getElementById("tb-" + id);
-                if (btn) btn.remove();
-            }
-
-            function activateTaskbar(id) {
-                const btn = document.getElementById("tb-" + id);
-                if (btn) btn.classList.add("active");
-            }
-
-            function deactivateTaskbar(id) {
-                const btn = document.getElementById("tb-" + id);
-                if (btn) btn.classList.remove("active");
-            }
-
-            function tetrisError() {
-                document
-                    .getElementById("error-dialog")
-                    .classList.remove("hidden");
-            }
-
-            function closeError() {
-                document.getElementById("error-dialog").classList.add("hidden");
-            }
-
-            function driverInstall() {
-                document
-                    .getElementById("error-dialog2")
-                    .classList.remove("hidden");
-            }
-
-            function closeError2() {
-                document
-                    .getElementById("error-dialog2")
-                    .classList.add("hidden");
-            }
-
-            function maximizeBrowser() {
-                const w = document.getElementById("browser-window");
-                w.classList.toggle("browser-maximized");
-            }
-
-            function browseBack() {}
-            function browseFwd() {}
-
-            function browseRefresh() {
-                document.getElementById("browser-frame").src =
-                    "home/index.html";
-                document.getElementById("browser-url").value =
-                    "https://nobleskye.dev/";
-            }
-
-            function updateBrowserUrl(path) {
-                const bar = document.getElementById("browser-url");
-                const display = path
-                    .replace(/^home\//, "")
-                    .replace(/\.html$/, "");
-                bar.value =
-                    path === "home/index.html"
-                        ? "https://nobleskye.dev/"
-                        : "https://nobleskye.dev/" + display;
-            }
-
-            document
-                .getElementById("browser-frame")
-                .addEventListener("load", function () {
-                    try {
-                        const full = this.contentWindow.location.href;
-                        const path = full.replace(/^https?:\/\/[^\/]+/, "");
-                        const bar = document.getElementById("browser-url");
-                        const display = path
-                            .replace(/^\/home\//, "/")
-                            .replace(/\.html$/, "");
-                        bar.value =
-                            path === "/" || path === "/home/index.html"
-                                ? "https://nobleskye.dev/"
-                                : "https://nobleskye.dev" + display;
-                    } catch (e) {
-                        document.getElementById("browser-url").value =
-                            "https://nobleskye.dev/";
-                    }
-                });
-
-            function notImpl(name) {
-                alert(name + " is not implemented yet.");
-            }
-
-            function openPlayer() {
-                openWin("player-window");
-                setTimeout(() => {
-                    const audio = document.getElementById("audio-player");
-                    if (audio.paused) {
-                        audio.play();
-                        document.getElementById("play-btn").textContent =
-                            "Pause";
-                        document.querySelector(
-                            "#player-window .player-status",
-                        ).textContent = "Playing";
-                    }
-                }, 100);
-            }
-
-            function playPause() {
-                const audio = document.getElementById("audio-player");
-                const btn = document.getElementById("play-btn");
-                if (audio.paused) {
-                    audio.play();
-                    btn.textContent = "Pause";
-                    document.querySelector(
-                        "#player-window .player-status",
-                    ).textContent = "Playing";
-                } else {
-                    audio.pause();
-                    btn.textContent = "Play";
-                    document.querySelector(
-                        "#player-window .player-status",
-                    ).textContent = "Paused";
-                }
-            }
-
-            document
-                .getElementById("audio-player")
-                .addEventListener("timeupdate", function () {
-                    const seek = document.getElementById("seek-bar");
-                    const audio = document.getElementById("audio-player");
-                    if (audio.duration) {
-                        seek.max = audio.duration;
-                        seek.value = audio.currentTime;
-                    }
-                });
-
-            document
-                .getElementById("audio-player")
-                .addEventListener("ended", function () {
-                    document.getElementById("play-btn").textContent = "Play";
-                    document.querySelector(
-                        "#player-window .player-status",
-                    ).textContent = "Ready";
-                    document.getElementById("seek-bar").value = 0;
-                });
-
-            function seekAudio() {
-                const audio = document.getElementById("audio-player");
-                audio.currentTime = document.getElementById("seek-bar").value;
-            }
-
-            function makeDraggable(winId) {
-                const win = document.getElementById(winId);
-                const bar = win.querySelector(".title-bar");
-                let offX, offY;
-                bar.addEventListener("mousedown", function (e) {
-                    bringToFront(winId);
-                    if (e.target.closest(".title-bar-controls")) return;
-                    offX = e.clientX - win.offsetLeft;
-                    offY = e.clientY - win.offsetTop;
-                    win.style.position = "fixed";
-                    win.style.left = win.offsetLeft + "px";
-                    win.style.top = win.offsetTop + "px";
-                    win.style.margin = "0";
-                    const mousemove = (ev) => {
-                        win.style.left = Math.max(0, ev.clientX - offX) + "px";
-                        win.style.top = Math.max(0, ev.clientY - offY) + "px";
-                    };
-                    const mouseup = () => {
-                        document.removeEventListener("mousemove", mousemove);
-                        document.removeEventListener("mouseup", mouseup);
-                    };
-                    document.addEventListener("mousemove", mousemove);
-                    document.addEventListener("mouseup", mouseup);
-                });
-            }
-
-            makeDraggable("balatro-window");
-            makeDraggable("profile-window");
-            makeDraggable("hang-window");
-            makeDraggable("player-window");
-            makeDraggable("browser-window");
-            makeDraggable("error-dialog");
-            makeDraggable("error-dialog2");
-
-            function runSteam() {
-                const a = document.createElement("a");
-                a.href = "steam://run/2379780";
-                a.style.display = "none";
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            }
-
-            function updateClock() {
-                const now = new Date();
-                let h = now.getHours();
-                const m = String(now.getMinutes()).padStart(2, "0");
-                const ampm = h >= 12 ? "PM" : "AM";
-                h = h % 12 || 12;
-                document.getElementById("taskbar-time").textContent =
-                    h + ":" + m + " " + ampm;
-            }
-
-            updateClock();
-            setInterval(updateClock, 10000);
-
-            openWin("profile-window");
-            openWin("browser-window");
-
-            const path = window.location.pathname.replace(/\/$/, "");
-            const certMatch = path.match(/\/(?:home\/)?certs(?:\.html)?$/);
-            if (certMatch) {
-                const f = document.getElementById("browser-frame");
-                f.src = "home/certs.html";
-                document.getElementById("browser-url").value =
-                    "https://nobleskye.dev/certs";
-            }
-        </script>
     </body>
 </html>
