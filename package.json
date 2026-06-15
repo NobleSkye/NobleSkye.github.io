@@ -1,8 +1,21 @@
 {
   "scripts": {
-    "start": "npx serve . -p 3000"
+    "start": "npx serve . -p 3000",
+    "check:html": "html-validator --file=index.html && html-validator --file=home/index.html && html-validator --file=home/certs.html",
+    "check:css": "stylelint style.css --allow-empty-input || true",
+    "check:links": "hyperlink index.html home/index.html home/certs.html --check-anchors --internal",
+    "check:assets": "node scripts/check-assets.js",
+    "check": "npm run check:html && npm run check:css && npm run check:assets",
+    "deploy:preview": "wrangler pages deploy . --project-name=nobleskye-github-io"
   },
   "dependencies": {
     "98.css": "^0.1.21"
+  },
+  "devDependencies": {
+    "html-validator": "^6.0.1",
+    "hyperlink": "^5.0.4",
+    "stylelint": "^16.2.0",
+    "stylelint-config-standard": "^36.0.0",
+    "wrangler": "^4.0.0"
   }
 }

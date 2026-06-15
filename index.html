@@ -13,41 +13,42 @@
         <script src="katja.js" />
         <link rel="stylesheet" href="kitten.css" />
         <link rel="icon" href="public/assets/favico.ico" />
+        <script src="script.js" defer></script>
     </head>
 
     <body>
         <div class="desktop" id="desktop">
             <div class="desktop-icons">
                 <div id="balatro" class="desktop-icon">
-                    <div class="desktop-icon-img" />
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">Balatro</span>
                 </div>
                 <div id="tetris" class="desktop-icon">
-                    <div class="desktop-icon-img" />
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">Tetris</span>
                 </div>
                 <div id="epic" class="desktop-icon">
-                    <div class="desktop-icon-img" />
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">epic.mp3</span>
                 </div>
                 <div id="profile" class="desktop-icon">
-                    <div class="desktop-icon-img" />
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">profile.jpg</span>
                 </div>
                 <div id="hang_in_there" class="desktop-icon">
-                    <div class="desktop-icon-img" />
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">hang_in_there.png</span>
                 </div>
                 <div id="browser" class="desktop-icon">
-                    <div class="desktop-icon-img" />
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">Internet Explorer</span>
                 </div>
                 <div id="driver_install" class="desktop-icon">
-                    <div class="desktop-icon-img" />
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">AGP Driver Install</span>
                 </div>
                 <div id="screenshot" class="desktop-icon">
-                    <div class="desktop-icon-img" />
+                    <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">Screenshot</span>
                 </div>
             </div>
@@ -61,15 +62,9 @@
                 <div class="title-bar">
                     <div class="title-bar-text">Balatro</div>
                     <div class="title-bar-controls">
-                        <button
-                            aria-label="Minimize"
-                            onclick="minimizeWin('balatro-window')"
-                        ></button>
+                        <button aria-label="Minimize"></button>
                         <button aria-label="Maximize" disabled></button>
-                        <button
-                            aria-label="Close"
-                            onclick="closeWin('balatro-window')"
-                        ></button>
+                        <button aria-label="Close"></button>
                     </div>
                 </div>
                 <div class="window-body">
@@ -86,7 +81,7 @@
             <div class="title-bar">
                 <div class="title-bar-text">Error</div>
                 <div class="title-bar-controls">
-                    <button aria-label="Close" onclick="closeError()"></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -101,7 +96,7 @@
                     </div>
                 </div>
                 <div class="error-buttons">
-                    <button onclick="closeError()">OK</button>
+                    <button class="ok-btn">OK</button>
                 </div>
             </div>
         </div>
@@ -114,7 +109,7 @@
             <div class="title-bar">
                 <div class="title-bar-text">Error</div>
                 <div class="title-bar-controls">
-                    <button aria-label="Close" onclick="closeError2()"></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -129,7 +124,7 @@
                     </div>
                 </div>
                 <div class="error-buttons">
-                    <button onclick="closeError2()">OK</button>
+                    <button class="ok-btn">OK</button>
                 </div>
             </div>
         </div>
@@ -143,15 +138,9 @@
             <div class="title-bar">
                 <div class="title-bar-text">profile.png</div>
                 <div class="title-bar-controls">
-                    <button
-                        aria-label="Minimize"
-                        onclick="minimizeWin('profile-window')"
-                    ></button>
+                    <button aria-label="Minimize"></button>
                     <button aria-label="Maximize" disabled></button>
-                    <button
-                        aria-label="Close"
-                        onclick="closeWin('profile-window')"
-                    ></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -168,15 +157,9 @@
             <div class="title-bar">
                 <div class="title-bar-text">hang_in_there.jpg</div>
                 <div class="title-bar-controls">
-                    <button
-                        aria-label="Minimize"
-                        onclick="minimizeWin('hang-window')"
-                    ></button>
+                    <button aria-label="Minimize"></button>
                     <button aria-label="Maximize" disabled></button>
-                    <button
-                        aria-label="Close"
-                        onclick="closeWin('hang-window')"
-                    ></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -193,15 +176,9 @@
             <div class="title-bar">
                 <div class="title-bar-text">epic.mp3 - Media Player</div>
                 <div class="title-bar-controls">
-                    <button
-                        aria-label="Minimize"
-                        onclick="minimizeWin('player-window')"
-                    ></button>
+                    <button aria-label="Minimize"></button>
                     <button aria-label="Maximize" disabled></button>
-                    <button
-                        aria-label="Close"
-                        onclick="closeWin('player-window')"
-                    ></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
@@ -214,20 +191,13 @@
                         </div>
                     </div>
                     <div class="player-controls">
-                        <button
-                            class="player-btn"
-                            onclick="playPause()"
-                            id="play-btn"
-                        >
-                            Play
-                        </button>
+                        <button class="player-btn" id="play-btn">Play</button>
                         <input
                             type="range"
                             class="player-seek"
                             id="seek-bar"
                             value="0"
                             max="100"
-                            oninput="seekAudio()"
                         />
                     </div>
                     <audio
@@ -248,63 +218,21 @@
             <div class="title-bar">
                 <div class="title-bar-text">About Me - Internet Explorer</div>
                 <div class="title-bar-controls">
-                    <button
-                        aria-label="Minimize"
-                        onclick="minimizeWin('browser-window')"
-                    ></button>
+                    <button aria-label="Minimize"></button>
                     <button aria-label="Maximize" disabled></button>
-                    <button
-                        aria-label="Close"
-                        onclick="closeWin('browser-window')"
-                    ></button>
+                    <button aria-label="Close"></button>
                 </div>
             </div>
             <div class="window-body">
                 <div class="browser-toolbar">
-                    <button onclick="browseBack()">Back</button>
-                    <button onclick="browseFwd()">Forward</button>
-                    <button onclick="browseRefresh()">Refresh</button>
+                    <button id="browse-back">Back</button>
+                    <button id="browse-fwd">Forward</button>
+                    <button id="browse-refresh">Refresh</button>
                     <input
                         type="text"
                         class="browser-url"
                         id="browser-url"
                         value="https://nobleskye.dev/"
-                        onkeydown="
-                            if (event.key === 'Enter') {
-                                event.preventDefault();
-                                const input = this.value.trim();
-                                const f =
-                                    document.getElementById('browser-frame');
-                                let path = input.replace(
-                                    /^https?:\/\/(?:www\.)?(?:98\.)?nobleskye\.dev\//,
-                                    '',
-                                );
-                                path = path.replace(/^https?:\/\/[^\/]+/, '');
-                                if (
-                                    !path ||
-                                    path.startsWith('http://') ||
-                                    path.startsWith('https://')
-                                ) {
-                                    f.src = 'home/index.html';
-                                    this.value = 'https://nobleskye.dev/';
-                                    return;
-                                }
-                                path = path.replace(/^\//, '');
-                                if (path && !path.includes('.')) {
-                                    path = 'home/' + path + '.html';
-                                }
-                                f.src = path || 'home/index.html';
-                                if (!path || path === 'home/index.html') {
-                                    this.value = 'https://nobleskye.dev/';
-                                } else {
-                                    const display = path
-                                        .replace(/^home\//, '')
-                                        .replace(/\.html$/, '');
-                                    this.value =
-                                        'https://nobleskye.dev/' + display;
-                                }
-                            }
-                        "
                     />
                 </div>
                 <div class="field-border browser-content">
@@ -323,5 +251,7 @@
             <div class="taskbar-items" id="taskbar-items" />
             <div class="taskbar-time" id="taskbar-time" />
         </div>
+
+        <div class="context-menu hidden" id="context-menu"></div>
     </body>
 </html>
