@@ -246,7 +246,10 @@
 
             <div class="footer">
                 <p>&copy; 2026 Skylar's Corner of the Internet</p>
-                <p>You are visitor # <span class="counter">00001337</span></p>
+                <a href="https://88x31.lol">
+                    <img src="https://88x31.lol/counter2.gif"
+                        alt="88x31 - Visitor counter" width="88" height="31" />
+                </a>
                 <p>
                     <img
                         src="https://i.imgur.com/invalid.gif"
@@ -266,16 +269,5 @@
                 </p>
             </div>
         </div>
-
-        <script>
-            let vid = localStorage.getItem("visitor_id");
-            if (!vid) {
-                vid = String(Math.floor(Math.random() * 9000000) + 1000000);
-                localStorage.setItem("visitor_id", vid);
-            }
-            const vc = Number(localStorage.getItem("visit_count") || 0) + 1;
-            localStorage.setItem("visit_count", vc);
-            document.querySelector(".counter").textContent = vid;
-        </script>
     </body>
 </html>
