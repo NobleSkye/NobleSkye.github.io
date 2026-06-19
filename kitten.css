@@ -1,0 +1,9 @@
+:root {}
+
+#balatro>div {background-image: url(public/desktop/balatro-logo.png);}
+#tetris>div {background-image: url(public/desktop/tetris.png);}
+#epic>div {background-image: url(public/desktop/audio-compression-1.png);}
+#profile>div, #hang_in_there>div {background-image: url(public/desktop/paint_file-1.png);}
+#browser>div {background-image: url(public/desktop/msie2-1.png);}
+#driver_install>div {background-image: url(public/desktop/installer_generic_old-1.png);}
+#screenshot>div {background-image: url(public/desktop/imagjpeg-1.png);}
