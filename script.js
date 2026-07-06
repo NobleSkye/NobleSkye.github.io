@@ -43,6 +43,9 @@ function closeWin(id) {
       "Ready";
     document.getElementById("seek-bar").value = 0;
   }
+  if (id === "projects-window") {
+    document.getElementById("projects").classList.remove("folder-open");
+  }
 }
 
 function toggleWin(id) {
@@ -245,6 +248,7 @@ window.addEventListener("load", () => {
   makeDraggable("browser-window");
   makeDraggable("error-dialog");
   makeDraggable("error-dialog2");
+  makeDraggable("projects-window");
 
   updateClock();
   setInterval(updateClock, 10000);
@@ -367,6 +371,32 @@ window.addEventListener("load", () => {
         () => notImpl("Image"),
       ),
     );
+
+  document
+    .getElementById("projects")
+    .addEventListener("click", () => {
+      document.getElementById("projects").classList.add("folder-open");
+      openWin("projects-window");
+    });
+  document
+    .getElementById("projects")
+    .addEventListener("contextmenu", (e) =>
+      showDesktopMenu(
+        e,
+        "My Projects",
+        "public/desktop/folder-open.png",
+        () => {
+          document.getElementById("projects").classList.add("folder-open");
+          openWin("projects-window");
+        },
+      ),
+    );
+
+  document.querySelectorAll(".explorer-item").forEach((item) => {
+    item.addEventListener("click", () => {
+      window.open(item.dataset.url, "_blank");
+    });
+  });
 
   document
     .querySelectorAll(".window .title-bar-controls")

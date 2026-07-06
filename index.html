@@ -55,6 +55,10 @@
                     <div class="desktop-icon-img"></div>
                     <span class="desktop-icon-label">Screenshot</span>
                 </div>
+                <div id="projects" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">My Projects</span>
+                </div>
             </div>
 
             <div
@@ -245,6 +249,43 @@
                         id="browser-frame"
                         class="browser-frame"
                     ></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="window explorer-window minimized"
+            id="projects-window"
+            data-label="My Projects"
+            data-icon="public/desktop/folder-open.png"
+        >
+            <div class="title-bar">
+                <div class="title-bar-text">My Projects</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize" disabled></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="explorer-toolbar">Projects</div>
+                <div class="explorer-items" id="explorer-items">
+                    <div class="explorer-item" data-url="https://skyemc.net">
+                        <div class="explorer-item-img" style="background-image: url('public/desktop/shortcuts/msie2-1.png')"></div>
+                        <span>skyemc.net</span>
+                    </div>
+                    <div class="explorer-item" data-url="https://pronouns.site">
+                        <div class="explorer-item-img" style="background-image: url('public/desktop/shortcuts/msie2-1.png')"></div>
+                        <span>pronouns.site</span>
+                    </div>
+                    <div class="explorer-item" data-url="https://blahaj.email">
+                        <div class="explorer-item-img" style="background-image: url('public/desktop/shortcuts/msie2-1.png')"></div>
+                        <span>blahaj.email</span>
+                    </div>
+                    <div class="explorer-item" data-url="https://legiti.dev">
+                        <div class="explorer-item-img" style="background-image: url('public/desktop/shortcuts/msie2-1.png')"></div>
+                        <span>legiti.dev</span>
+                    </div>
                 </div>
             </div>
         </div>

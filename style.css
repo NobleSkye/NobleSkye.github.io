@@ -1468,3 +1468,70 @@ body {
 #screenshot > .desktop-icon-img {
     background-image: url("public/desktop/shortcuts/imagjpeg-1.png");
 }
+#projects > .desktop-icon-img {
+    background-image: url("public/desktop/folder-closed.png");
+}
+#projects.folder-open > .desktop-icon-img {
+    background-image: url("public/desktop/folder-open.png");
+}
+
+.explorer-window {
+    width: 450px;
+    height: 350px;
+    position: fixed;
+    top: 12%;
+    left: 12%;
+    display: flex;
+    flex-direction: column;
+}
+
+.explorer-window > .window-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 4px;
+}
+
+.explorer-toolbar {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    padding: 3px 6px;
+    font-family: "Pixelated MS Sans Serif", Arial;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+}
+
+.explorer-items {
+    flex: 1;
+    background: white;
+    box-shadow: var(--border-field);
+    padding: 4px;
+    overflow-y: auto;
+}
+
+.explorer-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 6px;
+    cursor: pointer;
+    font-family: "Pixelated MS Sans Serif", Arial;
+    font-size: 11px;
+}
+
+.explorer-item:hover {
+    background: var(--dialog-blue);
+    color: white;
+}
+
+.explorer-item-img {
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
