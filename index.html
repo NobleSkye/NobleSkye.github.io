@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Skylar's Corner of the Internet</title>
+        <meta charset="UTF-8" />
+        <meta
+            name="description"
+            content="My Small Corner Of The Internet - Showing Off What I do"
+        />
+        <meta property="og:title" content="Skylar's Corner of the Internet" />
+        <meta
+            property="og:description"
+            content="My Small Corner Of The Internet - Showing Off What I do"
+        />
+        <meta property="og:image" content="public/assets/profile.png" />
+        <meta name="twitter:card" content="summary" />
+        <link rel="stylesheet" href="https://unpkg.com/98.css" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="public/assets/favico.ico" />
+        <script src="script.js" defer></script>
+    </head>
+
+    <body>
+        <div class="desktop" id="desktop">
+            <div class="desktop-icons">
+                <div id="balatro" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">Balatro</span>
+                </div>
+                <div id="tetris" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">Tetris</span>
+                </div>
+                <div id="epic" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">epic.mp3</span>
+                </div>
+                <div id="profile" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">profile.png</span>
+                </div>
+                <div id="hang_in_there" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">hang_in_there.png</span>
+                </div>
+                <div id="browser" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">Internet Explorer</span>
+                </div>
+                <div id="driver_install" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">AGP Driver Install</span>
+                </div>
+                <div id="screenshot" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">Screenshot</span>
+                </div>
+                <div id="projects" class="desktop-icon">
+                    <div class="desktop-icon-img"></div>
+                    <span class="desktop-icon-label">My Projects</span>
+                </div>
+            </div>
+
+            <div
+                class="window balatro-window minimized"
+                id="balatro-window"
+                data-label="Balatro"
+                data-icon="public/desktop/balatro/balatro-logo.png"
+            >
+                <div class="title-bar">
+                    <div class="title-bar-text">Balatro</div>
+                    <div class="title-bar-controls">
+                        <button aria-label="Minimize"></button>
+                        <button aria-label="Maximize" disabled></button>
+                        <button aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="balatro-bg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="window error-dialog hidden"
+            id="error-dialog"
+            style="top: 35%; left: 35%"
+        >
+            <div class="title-bar">
+                <div class="title-bar-text">Error</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="error-content">
+                    <div class="error-icon"></div>
+                    <div class="error-text">
+                        <p>Error starting program.</p>
+                        <p>
+                            A required .DLL file, <b>TETRIS.DLL</b>, was not
+                            found.
+                        </p>
+                    </div>
+                </div>
+                <div class="error-buttons">
+                    <button class="ok-btn">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="window error-dialog hidden"
+            id="error-dialog2"
+            style="top: 40%; left: 40%"
+        >
+            <div class="title-bar">
+                <div class="title-bar-text">Error</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="error-content">
+                    <div class="error-icon"></div>
+                    <div class="error-text">
+                        <p>Error starting program.</p>
+                        <p>
+                            A required .DLL file, <b>AGPDRV.DLL</b>, was not
+                            found.
+                        </p>
+                    </div>
+                </div>
+                <div class="error-buttons">
+                    <button class="ok-btn">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="window img-win minimized"
+            id="profile-window"
+            data-label="profile.png"
+            data-icon="public/desktop/shortcuts/paint_file-1.png"
+        >
+            <div class="title-bar">
+                <div class="title-bar-text">profile.png</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize" disabled></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="img-bg profile-bg"></div>
+            </div>
+        </div>
+
+        <div
+            class="window img-win minimized"
+            id="hang-window"
+            data-label="hang_in_there"
+            data-icon="public/desktop/shortcuts/paint_file-1.png"
+        >
+            <div class="title-bar">
+                <div class="title-bar-text">hang_in_there.jpg</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize" disabled></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="img-bg hang-bg"></div>
+            </div>
+        </div>
+
+        <div
+            class="window player-window minimized"
+            id="player-window"
+            data-label="epic.mp3"
+            data-icon="public/desktop/shortcuts/audio_compression-1.png"
+        >
+            <div class="title-bar">
+                <div class="title-bar-text">epic.mp3 - Media Player</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize" disabled></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="player-content">
+                    <div class="player-info">
+                        <div class="player-icon"></div>
+                        <div class="player-details">
+                            <span class="player-title">epic.mp3</span>
+                            <span class="player-status">Ready</span>
+                        </div>
+                    </div>
+                    <div class="player-controls">
+                        <button class="player-btn" id="play-btn">Play</button>
+                        <input
+                            type="range"
+                            class="player-seek"
+                            id="seek-bar"
+                            value="0"
+                            max="100"
+                        />
+                    </div>
+                    <audio
+                        id="audio-player"
+                        src="public/assets/epic.mp3"
+                        preload="auto"
+                    ></audio>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="window browser-window minimized"
+            id="browser-window"
+            data-label="Internet Explorer"
+            data-icon="public/desktop/shortcuts/msie2-1.png"
+        >
+            <div class="title-bar">
+                <div class="title-bar-text">About Me - Internet Explorer</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize" disabled></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="browser-toolbar">
+                    <button id="browse-back">Back</button>
+                    <button id="browse-fwd">Forward</button>
+                    <button id="browse-refresh">Refresh</button>
+                    <input
+                        type="text"
+                        class="browser-url"
+                        id="browser-url"
+                        value="https://nobleskye.dev/"
+                    />
+                </div>
+                <div class="field-border browser-content">
+                    <iframe
+                        src="home/index.html"
+                        id="browser-frame"
+                        class="browser-frame"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="window explorer-window minimized"
+            id="projects-window"
+            data-label="My Projects"
+            data-icon="public/desktop/folder-open.png"
+        >
+            <div class="title-bar">
+                <div class="title-bar-text">My Projects</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize" disabled></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="explorer-toolbar">Projects</div>
+                <div class="explorer-items" id="explorer-items">
+                    <div class="explorer-item" data-url="https://skyemc.net">
+                        <div class="explorer-item-img" style="background-image: url('public/desktop/shortcuts/msie2-1.png')"></div>
+                        <span>skyemc.net</span>
+                    </div>
+                    <div class="explorer-item" data-url="https://pronouns.site">
+                        <div class="explorer-item-img" style="background-image: url('public/desktop/shortcuts/msie2-1.png')"></div>
+                        <span>pronouns.site</span>
+                    </div>
+                    <div class="explorer-item" data-url="https://blahaj.email">
+                        <div class="explorer-item-img" style="background-image: url('public/desktop/shortcuts/msie2-1.png')"></div>
+                        <span>blahaj.email</span>
+                    </div>
+                    <div class="explorer-item" data-url="https://legiti.dev">
+                        <div class="explorer-item-img" style="background-image: url('public/desktop/shortcuts/msie2-1.png')"></div>
+                        <span>legiti.dev</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="taskbar">
+            <button class="start-button">Start</button>
+            <div class="taskbar-divider"></div>
+            <div class="taskbar-items" id="taskbar-items"></div>
+            <div class="taskbar-time" id="taskbar-time"></div>
+        </div>
+
+        <div class="context-menu hidden" id="context-menu"></div>
+    </body>
+</html>

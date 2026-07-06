@@ -1,18 +1,15 @@
 {
-  "name": "nobleskye-portfolio",
-  "type": "module",
-  "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "build": "echo 'Static site - no build step needed'",
+    "start": "npx serve . -p 3000",
+    "check:html": "html-validator --file=index.html && html-validator --file=home/index.html && html-validator --file=home/certs.html",
+    "check:css": "stylelint style.css --allow-empty-input || true",
+    "check:links": "hyperlink index.html home/index.html home/certs.html --check-anchors --internal",
+    "check:assets": "node scripts/check-assets.js",
+    "check": "npm run check:html && npm run check:css && npm run check:assets",
+    "deploy:preview": "wrangler pages deploy . --project-name=nobleskye-github-io"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^6.0.2",
-    "@fortawesome/fontawesome-free": "^7.1.0",
-    "astro": "^5.11.0",
-    "tailwindcss": "^3.0.0"
+    "98.css": "^0.1.21"
   }
 }
